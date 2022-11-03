@@ -80,17 +80,17 @@ markdown_extensions:
       alternate_style: true 
 
 plugins:
-  # - pdf-export
   - search
   - glightbox
-  - encryptcontent:
+  # - pdf-export
+  # - encryptcontent:
       # global_password: '123456'
       # remember_password: True
       # default_expire_delay: 2 
-      password_button: True
-      password_button_text: "<button style='color:black;background-color:teal;padding:5px;hight:10px !important;'>Decrypt</button>"
-      title_prefix: '[LOCK]'
-      summary: 'Encrypted content'
-      placeholder: ''
-      decryption_failure_message: ''
-      encryption_info_message: ''
+      # password_button: True
+      # password_button_text: "<button style='color:black;background-color:teal;padding:5px;hight:10px !important;'>Decrypt</button>"
+      # title_prefix: '[LOCK]'
+      # summary: 'Encrypted content'
+      # placeholder: ''
+      # decryption_failure_message: ''
+      # encryption_info_message: ''
