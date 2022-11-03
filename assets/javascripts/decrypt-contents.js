@@ -123,7 +123,7 @@ function decrypt_action(password_input, encrypted_content, decrypted_content) {
         // create HTML element for the inform message
         var decrypt_msg = document.createElement('p');
         decrypt_msg.setAttribute('id', 'mkdocs-decrypt-msg');
-        var node = document.createTextNode('');
+        var node = document.createTextNode('Invalid password.');
         decrypt_msg.appendChild(node);
         var mkdocs_decrypt_msg = document.getElementById('mkdocs-decrypt-msg');
         // clear all previous failure messages
@@ -142,7 +142,7 @@ function init_decryptor() {
     var password_input = document.getElementById('mkdocs-content-password'),
         encrypted_content = document.getElementById('mkdocs-encrypted-content'),
         decrypted_content = document.getElementById('mkdocs-decrypted-content'),
-        decrypt_button = document.getElementById("mkdocs-decrypt-button"),
+        
         decrypt_form = document.getElementById('mkdocs-decrypt-form');
     // adjust password field width to placeholder length
     let input = document.getElementById("mkdocs-content-password");
@@ -151,23 +151,7 @@ function init_decryptor() {
 
     
 
-    /* If password_button is set, try decrypt content when button is press */
-    if (decrypt_button) {
-        decrypt_button.onclick = function(event) {
-            event.preventDefault();
-            var content_decrypted = decrypt_action(
-                password_input, encrypted_content, decrypted_content
-            );
-            if (content_decrypted) {
-                
-                // continue to decrypt others parts
-                
-                
-            } else {
-                // TODO ?
-            };
-        };
-    }
+    
 
     /* Default, try decrypt content when key (ctrl) enter is press */
     password_input.addEventListener('keypress', function(event) {
