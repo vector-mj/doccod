@@ -5,5 +5,5 @@
     </h1>
 </center>
 <figure markdown>
-  ![vec](./background.png){ width="900" }
+  ![vec](./assets/background.png){ width="900" }
 </figure>
