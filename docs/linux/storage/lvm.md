@@ -1,5 +1,9 @@
-# LVM
+---
+comments: true
+---
 
+# LVM
+![lvm](../../assets/lvm.webp)
 ## Logical Volume Managment
 
 ```yaml

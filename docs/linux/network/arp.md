@@ -21,8 +21,7 @@ arp -a                               # list of all records
 ? (192.168.1.4) at 11:22:33:44:55:66 [ether] PERM on wlp1s0
 _gateway (192.168.1.1) at 30:a2:20:9d:b9:9c [ether] on wlp1s0
 ```
-```
-```
+
 
 | ARP cache entry state &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |	meaning	 | action if used |
 |:--------------------- |----------|----------------|
