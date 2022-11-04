@@ -12,6 +12,8 @@ nav:
     - Attacks:
       - security/attacks/arp-cache-poisoning.md
       - security/attacks/arp-spoofing.md
+  - Android:
+    - android/android.md
         
 theme:
   name: material
