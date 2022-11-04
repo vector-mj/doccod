@@ -340,6 +340,7 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="lvm">LVM</h1>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../assets/lvm.webp"><img alt="lvm" src="../../../assets/lvm.webp"/></a></p>
 <h2 id="logical-volume-managment">Logical Volume Managment</h2>
 <div class="highlight"><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">+-- Volume Group --------------------------------+</span><span class="w"></span>
 <span class="l l-Scalar l-Scalar-Plain">|                                                |</span><span class="w"></span>
@@ -480,6 +481,39 @@ mount /dev/my_vg/my_lv /mnt
 <span class="c1"># Status</span>
 df
 </code></pre></div>
+<h2 id="__comments">Comments</h2>
+<!-- Insert generated snippet here -->
+<script async="" crossorigin="anonymous" data-category="General" data-category-id="DIC_kwDOIXCVtM4CSWdV" data-emit-metadata="0" data-input-position="bottom" data-lang="en" data-mapping="pathname" data-reactions-enabled="1" data-repo="vector-mj/doccod" data-repo-id="R_kgDOIXCVtA" data-strict="0" data-theme="light_tritanopia" src="https://giscus.app/client.js">
+</script>
+<!-- Synchronize Giscus theme with palette -->
+<script>
+    var giscus = document.querySelector("script[src*=giscus]")
+    var comments = document.getElementsByClassName("giscus")[0]
+    /* Set palette on initial load */
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+        var theme = palette.color.scheme === "slate" ? "dark" : "light"
+        giscus.setAttribute("data-theme", theme)
+    }
+
+    /* Register event handlers after documented loaded */
+    document.addEventListener("DOMContentLoaded", function() {
+        var ref = document.querySelector("[data-md-component=palette]")
+        ref.addEventListener("change", function() {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+            var theme = palette.color.scheme === "slate" ? "dark" : "light"
+
+            /* Instruct Giscus to change theme */
+            var frame = document.querySelector(".giscus-frame")
+            frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme } } },
+            "https://giscus.app"
+            )
+        }
+        })
+    })
+    </script>
 </article>
 </div>
 </div>

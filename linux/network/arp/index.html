@@ -342,12 +342,10 @@
 <h2 id="how-arp-work">How ARP work ?</h2>
 <p>when new machine connected to a network and new packet arrived to the network gateway, gateway must route that packet to the right machine in the network, at the first step gateway look at the ARP mapping table that have if there is any record relevent to the packet destination ip, take that record and sent packet to mac address of the record, but if there is no record relevent to dst (destination) ip gateway broadcast an ARP request to all machines in the network then if one of those machines in the network have that ARP.request.ip <br/> <em>Reply</em>: <code>Heyyyy i am your requested ip and this is my mac address.</code></p>
 <h3 id="find-list-of-all-arp-records">Find list of all arp records:</h3>
-<p><div class="highlight"><span class="filename">arp tool in linux</span><pre><span></span><code>arp -a                               <span class="c1"># list of all records</span>
+<div class="highlight"><span class="filename">arp tool in linux</span><pre><span></span><code>arp -a                               <span class="c1"># list of all records</span>
 ? <span class="o">(</span><span class="m">192</span>.168.1.4<span class="o">)</span> at <span class="m">11</span>:22:33:44:55:66 <span class="o">[</span>ether<span class="o">]</span> PERM on wlp1s0
 _gateway <span class="o">(</span><span class="m">192</span>.168.1.1<span class="o">)</span> at <span class="m">30</span>:a2:20:9d:b9:9c <span class="o">[</span>ether<span class="o">]</span> on wlp1s0
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>
-</code></pre></div></p>
 <table>
 <thead>
 <tr>
