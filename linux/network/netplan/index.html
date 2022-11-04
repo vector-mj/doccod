@@ -242,6 +242,109 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="netplan">Netplan</h1>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">Netplan</label><label for="__tabbed_1_2">Interfaces</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nt">network</span><span class="p">:</span><span class="w"></span>
+<span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span><span class="w"></span>
+<span class="nt">renderer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">networkd</span><span class="w"></span>
+
+<span class="nt">ethernets</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">eth0</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">dhcp4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no</span><span class="w"></span>
+<span class="w">    </span><span class="nt">addresses</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.200.111/24</span><span class="w"></span>
+<span class="w">    </span><span class="c1"># gateway4: 192.168.200.1</span><span class="w"></span>
+<span class="w">    </span><span class="nt">routes</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">to</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span><span class="w"></span>
+<span class="w">        </span><span class="nt">via</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.200.1</span><span class="w"></span>
+<span class="w">    </span><span class="nt">nameservers</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">addresses</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.1.1.1</span><span class="w"></span>
+<span class="w">    </span><span class="nt">set-name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eth0</span><span class="w"></span>
+<span class="w">    </span><span class="nt">match</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eth*</span><span class="w"></span>
+<span class="w">        </span><span class="nt">macaddress</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">11:22:33:AA:BB:FF</span><span class="w"></span>
+
+<span class="nt">bonds</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">bond0</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">addresses</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">185.235.41.235</span><span class="w"></span>
+<span class="w">    </span><span class="nt">interfaces</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eth0</span><span class="w"></span>
+<span class="w">    </span><span class="nt">nameservers</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">search</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local</span><span class="w"></span>
+<span class="w">        </span><span class="nt">addresses</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.1.1.1</span><span class="w"></span>
+<span class="w">    </span><span class="nt">mtu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1500</span><span class="w"></span>
+<span class="w">    </span><span class="nt">parameters</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">802.3ad</span><span class="w"></span>
+<span class="w">        </span><span class="nt">lacp-rate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fast</span><span class="w"></span>
+<span class="w">        </span><span class="nt">mii-monitor-interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span><span class="w"></span>
+<span class="w">        </span><span class="nt">transmit-hash-policy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">layer3+4</span><span class="w"></span>
+
+<span class="nt">bridges</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">br0</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">dhcp4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no</span><span class="w"></span>
+<span class="w">    </span><span class="nt">addresses</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.2.6/24</span><span class="w"></span>
+<span class="w">    </span><span class="nt">interfaces</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vlan2</span><span class="w"></span>
+
+<span class="nt">vlans</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">vlan1</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span><span class="w"></span>
+<span class="w">    </span><span class="nt">link</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eth0</span><span class="w"></span>
+<span class="w">    </span><span class="nt">addresses</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">"10.3.98.5/24"</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="w">    </span><span class="nt">nameservers</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">addresses</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">"127.0.0.1"</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+
+<span class="nt">lo</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">match</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lo</span><span class="w"></span>
+
+<span class="nt">wifis</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">wlp2s0b1</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">dhcp4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no</span><span class="w"></span>
+<span class="w">    </span><span class="nt">dhcp6</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no</span><span class="w"></span>
+<span class="w">    </span><span class="nt">addresses</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">192.168.0.21/24</span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="w">    </span><span class="nt">nameservers</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">addresses</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">192.168.0.1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">8.8.8.8</span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="w">    </span><span class="nt">access-points</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="s">"network_ssid_name"</span><span class="p p-Indicator">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">"**********"</span><span class="w"></span>
+<span class="w">    </span><span class="nt">routes</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">to</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span><span class="w"></span>
+<span class="w">        </span><span class="nt">via</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.0.1</span><span class="w"></span>
+
+<span class="w">    </span><span class="nt">wl0</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">access-points</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">university</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">auth</span><span class="p">:</span><span class="w"></span>
+<span class="w">            </span><span class="nt">key-management</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eap</span><span class="w"></span>
+<span class="w">            </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tls</span><span class="w"></span>
+<span class="w">            </span><span class="nt">anonymous-identity</span><span class="p">:</span><span class="w"> </span><span class="s">"@cust.example.com"</span><span class="w"></span>
+<span class="w">            </span><span class="nt">identity</span><span class="p">:</span><span class="w"> </span><span class="s">"cert-joe@cust.example.com"</span><span class="w"></span>
+<span class="w">            </span><span class="nt">ca-certificate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/ssl/cust-cacrt.pem</span><span class="w"></span>
+<span class="w">            </span><span class="nt">client-certificate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/ssl/cust-crt.pem</span><span class="w"></span>
+<span class="w">            </span><span class="nt">client-key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/ssl/cust-key.pem</span><span class="w"></span>
+<span class="w">            </span><span class="nt">client-key-password</span><span class="p">:</span><span class="w"> </span><span class="s">"d3cryptPr1v4t3K3y"</span><span class="w"></span>
+<span class="w">    </span><span class="nt">dhcp4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yes</span><span class="w"></span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">iface eth0 inet static</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">address 192.168.1.5</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">netmask 255.255.255.0</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">gateway 192.168.1.254</span><span class="w"></span>
+
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">auto eth0</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">iface eth0 inet dhcp</span><span class="w"></span>
+</code></pre></div>
+</div>
+</div>
+</input></input></div>
 </article>
 </div>
 </div>

@@ -190,8 +190,43 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#lvm_1">
-    lvm
+<a class="md-nav__link" href="#logical-volume-managment">
+    Logical Volume Managment
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#physical-volume-pv">
+    physical volume (PV)
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#volume-group-vg">
+    volume group (VG)
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#logical-volume-lv">
+    logical volume (LV)
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#physical-extent-pe">
+    physical extent (PE)
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#logical-extent-le">
+    logical extent (LE)
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mapping-modes-linearstriped">
+    mapping modes (linear/striped)
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#lvm-on-three-scsi-disk">
+    LVM on three SCSI disk
   </a>
 </li>
 </ul>
@@ -258,8 +293,43 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#lvm_1">
-    lvm
+<a class="md-nav__link" href="#logical-volume-managment">
+    Logical Volume Managment
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#physical-volume-pv">
+    physical volume (PV)
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#volume-group-vg">
+    volume group (VG)
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#logical-volume-lv">
+    logical volume (LV)
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#physical-extent-pe">
+    physical extent (PE)
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#logical-extent-le">
+    logical extent (LE)
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mapping-modes-linearstriped">
+    mapping modes (linear/striped)
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#lvm-on-three-scsi-disk">
+    LVM on three SCSI disk
   </a>
 </li>
 </ul>
@@ -270,7 +340,146 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="lvm">LVM</h1>
-<h3 id="lvm_1">lvm</h3>
+<h2 id="logical-volume-managment">Logical Volume Managment</h2>
+<div class="highlight"><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">+-- Volume Group --------------------------------+</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">|                                                |</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">|    +----------------------------------------+  |</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">| PV | PE |  PE | PE | PE | PE | PE | PE | PE |  |</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">|    +----------------------------------------+  |</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">|      .          .          .        .          |</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">|      .          .          .        .          |</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">|    +----------------------------------------+  |</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">| LV | LE |  LE | LE | LE | LE | LE | LE | LE |  |</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">|    +----------------------------------------+  |</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">|            .          .        .         .     |</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">|            .          .        .         .     |</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">|    +----------------------------------------+  |</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">| PV | PE |  PE | PE | PE | PE | PE | PE | PE |  |</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">|    +----------------------------------------+  |</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">|                                                |</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">+------------------------------------------------+</span><span class="w"></span>
+
+
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">hda1   hdc1      (PV:s on partitions or whole disks)</span><span class="w">                        </span>
+<span class="w">       </span><span class="l l-Scalar l-Scalar-Plain">\   /</span><span class="w">                                                                    </span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">\ /</span><span class="w">                                                                     </span>
+<span class="w">       </span><span class="l l-Scalar l-Scalar-Plain">diskvg        (VG)</span><span class="w">                                                       </span>
+<span class="w">       </span><span class="l l-Scalar l-Scalar-Plain">/  |  \</span><span class="w">                                                                  </span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">/   |   \</span><span class="w">                                                                 </span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">usrlv rootlv varlv (LV:s)</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">|      |     |</span><span class="w">                                                              </span>
+<span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ext2  reiserfs  xfs (filesystems)</span><span class="w">                                        </span>
+</code></pre></div>
+<h2 id="physical-volume-pv">physical volume (PV)</h2>
+<blockquote>
+<p>A physical volume is typically a hard disk, though it may well just be a device that 'looks' like a hard disk (eg. a software raid device). </p>
+</blockquote>
+<h2 id="volume-group-vg">volume group (VG)</h2>
+<blockquote>
+<p>The Volume Group is the highest level abstraction used within the LVM. It gathers together a collection of Logical Volumes and Physical Volumes into one administrative unit. </p>
+</blockquote>
+<h2 id="logical-volume-lv">logical volume (LV)</h2>
+<blockquote>
+<p>The equivalent of a disk partition in a non-LVM system. The LV is visible as a standard block device; as such the LV can contain a file system (eg. /home). </p>
+</blockquote>
+<h2 id="physical-extent-pe">physical extent (PE)</h2>
+<blockquote>
+<p>Each physical volume is divided chunks of data, known as physical extents, these extents have the same size as the logical extents for the volume group. </p>
+</blockquote>
+<h2 id="logical-extent-le">logical extent (LE)</h2>
+<blockquote>
+<p>Each logical volume is split into chunks of data, known as logical extents. The extent size is the same for all logical volumes in the volume group. </p>
+</blockquote>
+<h2 id="mapping-modes-linearstriped">mapping modes (linear/striped)</h2>
+<div class="highlight"><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">+--------------------------------------------------------------------------+</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">| The administrator can choose between a couple of</span><span class="w">                          </span>
+<span class="l l-Scalar l-Scalar-Plain">| general strategies for mapping logical extents onto physical extents</span><span class="p p-Indicator">:</span><span class="w"></span>
+<span class="p p-Indicator">|</span><span class="w"></span>
+<span class="p p-Indicator">|</span><span class="err"> Linear mapping will assign a range of PE's to an area of</span><span class="w"> </span>
+<span class="p p-Indicator">|</span><span class="err"> an LV in order eg., LE 1 - 99 map to PV1 and LE 100 - 347 map onto PV2.</span><span class="w"></span>
+<span class="p p-Indicator">|</span><span class="w"></span>
+<span class="p p-Indicator">|</span><span class="err"> Striped mapping will interleave the chunks of the logical extents</span><span class="w"></span>
+<span class="p p-Indicator">|</span><span class="err"> across a number of physical volumes eg.,</span><span class="w"></span>
+<span class="p p-Indicator">|</span><span class="w"></span>
+<span class="p p-Indicator">|</span><span class="err">  1st chunk of LE[1] -&gt; PV1[1],</span><span class="w"></span>
+<span class="p p-Indicator">|</span><span class="err">  2nd chunk of LE[1] -&gt; PV2[1],</span><span class="w"></span>
+<span class="p p-Indicator">|</span><span class="err">  3rd chunk of LE[1] -&gt; PV3[1],</span><span class="w"></span>
+<span class="p p-Indicator">|</span><span class="err">  4th chunk of LE[1] -&gt; PV1[2],</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">+--------------------------------------------------------------------------+</span><span class="w"></span>
+</code></pre></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><input id="__tabbed_1_3" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">PV</label><label for="__tabbed_1_2">VG</label><label for="__tabbed_1_3">LV</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><div class="highlight"><span class="filename">Create PV</span><pre><span></span><code>pvcreate /dev/hdb
+</code></pre></div>
+<div class="highlight"><span class="filename">Remove PV</span><pre><span></span><code>pvcreate /dev/hdb
+</code></pre></div>
+<div class="highlight"><span class="filename">Remove from VG</span><pre><span></span><code>pvdisplay /dev/hda1
+vgreduce my_volume_group /dev/hda1 <span class="c1"># or pvmove</span>
+</code></pre></div></p>
+</div>
+<div class="tabbed-block">
+<p><div class="highlight"><span class="filename">Create</span><pre><span></span><code>vgcreate my_volume_group /dev/hda1 /dev/hdb1 
+</code></pre></div>
+<div class="highlight"><span class="filename">Remove</span><pre><span></span><code>vgchange -a n my_volume_group
+vgremove my_volume_group
+</code></pre></div>
+<div class="highlight"><span class="filename">Extend</span><pre><span></span><code>vgextend my_volume_group /dev/hdc1 <span class="c1"># new physical volume</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Activate</span><pre><span></span><code>vgchange -a y my_volume_group 
+</code></pre></div>
+<div class="highlight"><span class="filename">Diactivate</span><pre><span></span><code>vgchange -a n my_volume_group 
+</code></pre></div></p>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><span class="filename">Create</span><pre><span></span><code><span class="c1"># For linear, size:1500m, name:testlv, from:testvg</span>
+lvcreate -L1500 -ntestlv testvg
+
+<span class="c1"># To create a 100 LE large logical volume with 2 stripes and stripe size 4 KB.</span>
+lvcreate -i2 -I4 -l100 -nanothertestlv testvg
+
+<span class="c1"># If you want to create an LV that uses the entire VG, use vgdisplay to find the "Total PE" size, then use that when running lvcreate.</span>
+vgdisplay testvg <span class="p">|</span> grep <span class="s2">"Total PE"</span>
+<span class="c1">#&gt; Total PE              10230</span>
+lvcreate -l <span class="m">10230</span> testvg -n mylv
+
+<span class="c1"># If you want the logical volume to be allocated from a specific physical volume in the volume group, specify the PV or PVs at the end of the lvcreate command line.</span>
+lvcreate -L <span class="m">1500</span> -ntestlv testvg /dev/sdg
+</code></pre></div>
+<div class="highlight"><span class="filename">Remove</span><pre><span></span><code><span class="c1"># Removing a logical volume</span>
+umount /dev/myvg/homevol
+lvremove /dev/myvg/homevol
+</code></pre></div>
+<div class="highlight"><span class="filename">Extend</span><pre><span></span><code>lvextend -L12G /dev/myvg/homevol
+lvextend -L+1G /dev/myvg/homevol
+</code></pre></div>
+</div>
+</div>
+</input></input></input></div>
+<h2 id="lvm-on-three-scsi-disk">LVM on three SCSI disk</h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># create PV</span>
+pvcreate /dev/sda
+pvcreate /dev/sdb
+pvcreate /dev/sdc
+
+<span class="c1"># create VG</span>
+vgcreate my_vg /dev/sda /dev/sdb /dev/sdc
+
+<span class="c1"># create LV</span>
+lvcreate -L1G -n my_lv my_vg
+<span class="c1"># or with stripes</span>
+lvcreate -L1G -i3 -I4 -n my_lv my_vg 
+
+
+<span class="c1"># Format</span>
+mke2fs /dev/my_vg/my_lv
+
+<span class="c1"># Mount</span>
+mount /dev/my_vg/my_lv /mnt
+
+<span class="c1"># Status</span>
+df
+</code></pre></div>
 </article>
 </div>
 </div>
