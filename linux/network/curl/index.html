@@ -7,7 +7,7 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <link href="../../../assets/logo.png" rel="icon"/>
 <meta content="mkdocs-1.4.2, mkdocs-material-8.5.7" name="generator"/>
-<title>Curl - DoCCoD</title>
+<title>CURL - DoCCoD</title>
 <link href="../../../assets/stylesheets/main.20d9efc8.min.css" rel="stylesheet"/>
 <link href="../../../assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -53,7 +53,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Curl
+              CURL
             
           </span>
 </div>
@@ -151,9 +151,31 @@
 </li>
 <li class="md-nav__item md-nav__item--active">
 <input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          CURL
+          <span class="md-nav__icon md-icon"></span>
+</label>
 <a class="md-nav__link md-nav__link--active" href="./">
-        Curl
+        CURL
       </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#curl-client-url">
+    cURL ~ Client URL
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#commands">
+    🌱 Commands
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../netplan/">
@@ -255,13 +277,142 @@
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#curl-client-url">
+    cURL ~ Client URL
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#commands">
+    🌱 Commands
+  </a>
+</li>
+</ul>
 </nav>
 </div>
 </div>
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="curl">Curl</h1>
+<h1 id="curl">CURL</h1>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../assets/curl.jpg"><img alt="curl" src="../../../assets/curl.jpg" width="700"/></a></p>
+<h2 id="curl-client-url">cURL ~ Client URL</h2>
+<p>cURL is a computer software project providing a library and command-line tool for transferring data using various network protocols.</p>
+<h2 id="commands">🌱 Commands</h2>
+<div class="highlight"><span class="filename">🟢 Save the Output to a File</span><pre><span></span><code>curl -o react.js https://test.net/react.js
+curl -O https://test.net/react.js
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Resume a Download</span><pre><span></span><code>curl -C - -O https://test.net/react.js
+</code></pre></div>
+<p><div class="highlight"><span class="filename">🟢 Get the HTTP Headers of a URL</span><pre><span></span><code>curl -I https://test.net/react.js
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Test if a Website Supports HTTP/2</span><pre><span></span><code>curl -I --http2 https://test.net/react.js
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Follow Redirects</span><pre><span></span><code>curl -L https://test.net/react.js
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Change User-Agent</span><pre><span></span><code>curl -A <span class="s2">"Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0"</span> https://test.net/react.js
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Specify a Maximum Transfer Rate</span><pre><span></span><code>curl --limit-rate 1m -O https://test.net/react.js
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 FTP</span><pre><span></span><code>curl -u FTP_USERNAME:FTP_PASSWORD ftp://ftp.example.com/
+curl -T newfile.tar.gz -u FTP_USERNAME:FTP_PASSWORD ftp://ftp.example.com/
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Send Cookie</span><pre><span></span><code>curl -b <span class="s2">"oraclelicense=a"</span> https://test.net/react.js
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Using Proxies</span><pre><span></span><code>curl -U username:password -x <span class="m">192</span>.168.44.1:8888 https://test.net/react.js
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Multiple Url</span><pre><span></span><code>curl http://url.com/archive<span class="o">[</span><span class="m">2010</span>-2020<span class="o">]</span>/vol<span class="o">[</span><span class="m">1</span>-4<span class="o">]</span>/part<span class="o">{</span>a,b,c<span class="o">}</span>.html
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Post request with data</span><pre><span></span><code>curl -XPOST -d <span class="s2">"name=react,type=js"</span>  https://test.net/react.js
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Referer Url</span><pre><span></span><code>curl -e aparat.com https://test.net
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Curl with specified certificate file</span><pre><span></span><code>curl --cacert ./ca.crt https://test.net
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Fail silent</span><pre><span></span><code>curl -f https://test.net/react.js
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Form page</span><pre><span></span><code><span class="c1"># @ : file, &lt; : contetntOfFile, - : readFromInput </span>
+curl -F <span class="s2">"web=@index.html;Type=text/html,pass=12345"</span> https://test.net
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Keepalive connection</span><pre><span></span><code><span class="c1"># --keepalive-time --no-keepalive</span>
+curl --keepalive-time <span class="m">100</span> https://test.net
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Specify local port</span><pre><span></span><code>curl --local-port <span class="m">5555</span> https://test.net
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Pass phrase for the private key</span><pre><span></span><code>curl --pass <span class="m">123456</span> https://test.net
+</code></pre></div>
+--pubkey
+<div class="highlight"><span class="filename">🟢 Send PublicKey</span><pre><span></span><code>curl --pubkey key.pub https://test.net/react.js
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Proxy and proxy tunnel</span><pre><span></span><code>curl -p -x socks5://1.2.3.4:12345 https://test.net/react.js
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Custom address for resolving</span><pre><span></span><code>curl --resolve &lt;host:port:address&gt; https://test.net/react.js
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Get a range of bytes</span><pre><span></span><code>curl -r <span class="m">0</span>-499 https://test.net/react.js
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Retry</span><pre><span></span><code>curl --retry <span class="m">5</span> --retry-delay <span class="m">5</span> https://test.net/react.js
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Redirect stderr to the specified file</span><pre><span></span><code>curl --stderr err https://test.net
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Trace all requests and response</span><pre><span></span><code>curl --trace - --trace-ascii - https://test.net
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Force http and ip version</span><pre><span></span><code><span class="c1"># or -0  ,   -4 for ipv4 , -6 for ipv6</span>
+curl --http1.0 https://test.net/react.js
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Parallel download</span><pre><span></span><code>curl -Z -O https://test.net/react1.js -O https://test.net/react2.js
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Force tls version</span><pre><span></span><code><span class="c1"># or -1 -2 -3</span>
+curl --tlsv1.0 --max-tls <span class="m">1</span>.0 https://test.net/react.js
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Force tls version</span><pre><span></span><code><span class="c1"># or -1 -2 -3</span>
+curl --tlsv1.0 --max-tls <span class="m">1</span>.0 https://test.net/react.js
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Force tls version</span><pre><span></span><code><span class="c1"># or -1 -2 -3</span>
+curl --tlsv1.0 --max-tls <span class="m">1</span>.0 https://test.net/react.js
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Insecure request</span><pre><span></span><code><span class="c1"># or --insecure</span>
+curl -k https://test.net
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 C++ code of request</span><pre><span></span><code>curl --libcurl cppCode https://test.net/react.js
+</code></pre></div></p>
+<h2 id="__comments">Comments</h2>
+<!-- Insert generated snippet here -->
+<script async="" crossorigin="anonymous" data-category="General" data-category-id="DIC_kwDOIXCVtM4CSWdV" data-emit-metadata="0" data-input-position="bottom" data-lang="en" data-mapping="pathname" data-reactions-enabled="1" data-repo="vector-mj/doccod" data-repo-id="R_kgDOIXCVtA" data-strict="0" data-theme="light_tritanopia" src="https://giscus.app/client.js">
+</script>
+<!-- Synchronize Giscus theme with palette -->
+<script>
+    var giscus = document.querySelector("script[src*=giscus]")
+    var comments = document.getElementsByClassName("giscus")[0]
+    /* Set palette on initial load */
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+        var theme = palette.color.scheme === "slate" ? "dark" : "light"
+        giscus.setAttribute("data-theme", theme)
+    }
+
+    /* Register event handlers after documented loaded */
+    document.addEventListener("DOMContentLoaded", function() {
+        var ref = document.querySelector("[data-md-component=palette]")
+        ref.addEventListener("change", function() {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+            var theme = palette.color.scheme === "slate" ? "dark" : "light"
+
+            /* Instruct Giscus to change theme */
+            var frame = document.querySelector(".giscus-frame")
+            frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme } } },
+            "https://giscus.app"
+            )
+        }
+        })
+    })
+    </script>
 </article>
 </div>
 </div>
