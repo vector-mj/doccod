@@ -8,6 +8,7 @@ nav:
       - linux/network/netplan.md
     - Storage:
       - linux/storage/lvm.md
+      - linux/storage/mongo-backup.md
   - Security:
     - Attacks:
       - security/attacks/arp-cache-poisoning.md
