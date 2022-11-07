@@ -7,7 +7,7 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <link href="../../../assets/logo.png" rel="icon"/>
 <meta content="mkdocs-1.4.2, mkdocs-material-8.5.7" name="generator"/>
-<title>ARP - DoCCoD</title>
+<title>Mongo backup - DoCCoD</title>
 <link href="../../../assets/stylesheets/main.20d9efc8.min.css" rel="stylesheet"/>
 <link href="../../../assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -29,7 +29,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#arp">
+<a class="md-skip" href="#backup-script">
           Skip to content
         </a>
 </div>
@@ -53,7 +53,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              ARP
+              Mongo backup
             
           </span>
 </div>
@@ -132,8 +132,8 @@
           Linux
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" id="__nav_2_1" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" id="__nav_2_1" type="checkbox"/>
 <label class="md-nav__link" for="__nav_2_1">
           Network
           <span class="md-nav__icon md-icon"></span>
@@ -144,77 +144,26 @@
           Network
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-          ARP
-          <span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../network/arp/">
         ARP
       </a>
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#what-is-arp">
-    What is ARP ?
-  </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#how-arp-work">
-    How ARP work ?
-  </a>
-<nav aria-label="How ARP work ?" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#find-list-of-all-arp-records">
-    Find list of all arp records:
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#create-permenent-arp-record">
-    Create permenent arp record:
-  </a>
-<nav aria-label="Create permenent arp record:" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#result">
-    Result:
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#remove-any-record-from-cache-table">
-    Remove any record from cache table:
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../curl/">
+<a class="md-nav__link" href="../../network/curl/">
         CURL
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../netplan/">
+<a class="md-nav__link" href="../../network/netplan/">
         Netplan
       </a>
 </li>
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" id="__nav_2_2" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" id="__nav_2_2" type="checkbox"/>
 <label class="md-nav__link" for="__nav_2_2">
           Storage
           <span class="md-nav__icon md-icon"></span>
@@ -226,14 +175,42 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../storage/lvm/">
+<a class="md-nav__link" href="../lvm/">
         LVM
       </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../storage/mongo-backup/">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Mongo backup
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
         Mongo backup
       </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#backup-script">
+    📄 Backup Script
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#step-1">
+    🥭 Step 1
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#step-2">
+    🥭 Step 2
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -316,42 +293,19 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#what-is-arp">
-    What is ARP ?
+<a class="md-nav__link" href="#backup-script">
+    📄 Backup Script
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#how-arp-work">
-    How ARP work ?
-  </a>
-<nav aria-label="How ARP work ?" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#find-list-of-all-arp-records">
-    Find list of all arp records:
+<a class="md-nav__link" href="#step-1">
+    🥭 Step 1
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#create-permenent-arp-record">
-    Create permenent arp record:
+<a class="md-nav__link" href="#step-2">
+    🥭 Step 2
   </a>
-<nav aria-label="Create permenent arp record:" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#result">
-    Result:
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#remove-any-record-from-cache-table">
-    Remove any record from cache table:
-  </a>
-</li>
-</ul>
-</nav>
 </li>
 </ul>
 </nav>
@@ -360,80 +314,112 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="arp">ARP</h1>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../assets/background.png"><img alt="Image title" src="../../../assets/background.png"/></a></p>
-<h2 id="what-is-arp">What is ARP ?</h2>
-<p>ARP or <strong>Address Resolution Protocol</strong> is a producer for mapping ipv4 to mac address.</p>
-<h2 id="how-arp-work">How ARP work ?</h2>
-<p>when new machine connected to a network and new packet arrived to the network gateway, gateway must route that packet to the right machine in the network, at the first step gateway look at the ARP mapping table that have if there is any record relevent to the packet destination ip, take that record and sent packet to mac address of the record, but if there is no record relevent to dst (destination) ip gateway broadcast an ARP request to all machines in the network then if one of those machines in the network have that ARP.request.ip <br/> <em>Reply</em>: <code>Heyyyy i am your requested ip and this is my mac address.</code></p>
-<h3 id="find-list-of-all-arp-records">Find list of all arp records:</h3>
-<div class="highlight"><span class="filename">arp tool in linux</span><pre><span></span><code>arp -a                               <span class="c1"># list of all records</span>
-? <span class="o">(</span><span class="m">192</span>.168.1.4<span class="o">)</span> at <span class="m">11</span>:22:33:44:55:66 <span class="o">[</span>ether<span class="o">]</span> PERM on wlp1s0
-_gateway <span class="o">(</span><span class="m">192</span>.168.1.1<span class="o">)</span> at <span class="m">30</span>:a2:20:9d:b9:9c <span class="o">[</span>ether<span class="o">]</span> on wlp1s0
+<h1>Mongo backup</h1>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../assets/mongo.png"><img alt="mongo" src="../../../assets/mongo.png" width="800"/></a></p>
+<h2 id="backup-script">📄 Backup Script</h2>
+<div class="highlight"><span class="filename">Backup script</span><pre><span></span><code><span class="ch">#!/usr/bin/bash</span>
+<span class="c1">#+---------------------------</span>
+<span class="c1">#| Example :</span>
+<span class="c1">#|---------------------------</span>
+<span class="c1">#| MONGO_SERVER</span>
+<span class="c1">#| mongodump --host 192.168.200.120 --port 27017 -u admin -p XXXXXXXXXX --authenticationDatabase=XXXXXXX --db=XXXXXXX --gzip --archive | ssh ubuntu@backupServer -p22 "cat - &gt; /BACKUP/$(date '+%Y-%m-%d_%H:%M:%S_%p')"</span>
+<span class="c1">#|</span>
+<span class="c1">#| BACKUP_SERVER</span>
+<span class="c1">#| env BACKUP_NUM=8 BUCKET_NAME=XXXXXXXXX SECRET_KEY=XXXXXXXX  ACCESS_KEY=XXXXX HOST=XXXXXX BACKUP_DIR=/BACKUP bash mongo-backup.sh</span>
+<span class="c1">#+---------------------------</span>
+
+<span class="nv">RED</span><span class="o">=</span><span class="s1">'\033[0;31m'</span>
+<span class="nv">GREEN</span><span class="o">=</span><span class="s1">'\033[0;32m'</span>
+<span class="nv">YELLOW</span><span class="o">=</span><span class="s1">'\033[0;33m'</span>
+<span class="nv">BLUE</span><span class="o">=</span><span class="s1">'\033[0;34m'</span>
+<span class="nv">NC</span><span class="o">=</span><span class="s1">'\033[0m'</span>
+
+log<span class="o">(){</span>
+        <span class="nb">echo</span> -e <span class="s2">"</span><span class="nv">$BLUE</span><span class="s2"> `date '+%Y_%m_%d_%H:%M:%S'` </span><span class="nv">$NC</span><span class="s2"> </span><span class="nv">$GREEN</span><span class="s2"> [LOG] </span><span class="nv">$NC</span><span class="s2"> </span><span class="nv">$*</span><span class="s2"> </span><span class="nv">$NC</span><span class="s2">"</span>
+<span class="o">}</span>
+
+
+pre<span class="o">(){</span>
+   <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$EUID</span><span class="s2">"</span> -eq <span class="m">0</span> <span class="o">]</span>
+   <span class="k">then</span> log <span class="s2">"</span><span class="nv">$RED</span><span class="s2"> Please run this script without root permission"</span>
+        <span class="nb">exit</span>
+   <span class="k">fi</span>
+
+   <span class="k">if</span> <span class="o">[</span> <span class="k">$(</span>dpkg-query -W -f<span class="o">=</span><span class="s1">'${Status}'</span> s3cmd <span class="m">2</span>&gt;/dev/null <span class="p">|</span> grep -c <span class="s2">"ok installed"</span><span class="k">)</span> -eq <span class="m">0</span> <span class="o">]</span><span class="p">;</span>
+   <span class="k">then</span>
+        log <span class="s2">"</span><span class="nv">$YELLOW</span><span class="s2"> Please Install s3cmd ( apt install s3cmd )"</span>
+      <span class="c1"># DEBIAN_FRONTEND=noninteractive apt install s3cmd -y;</span>
+   <span class="k">fi</span>
+
+
+sudo tee  ~/.s3cfg &gt; /dev/null <span class="s">&lt;&lt;EOT</span>
+<span class="s">[default]</span>
+<span class="s">secret_key  = $SECRET_KEY</span>
+<span class="s">access_key  = $ACCESS_KEY</span>
+<span class="s">host_base   = $HOST</span>
+<span class="s">host_bucket = $HOST</span>
+<span class="s">use_https   = True</span>
+
+<span class="s">EOT</span>
+
+
+<span class="o">[[</span> -z <span class="s2">"</span><span class="si">${</span><span class="nv">BACKUP_NUM</span><span class="si">}</span><span class="s2">"</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> log <span class="s2">"</span><span class="nv">$YELLOW</span><span class="s2"> Please set \$BACKUP_NUM environment"</span> <span class="o">&amp;&amp;</span> <span class="nb">exit</span>  <span class="o">||</span> <span class="nv">BACKUP_NUM</span><span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">BACKUP_NUM</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">[[</span> -z <span class="s2">"</span><span class="si">${</span><span class="nv">BUCKET_NAME</span><span class="si">}</span><span class="s2">"</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> log <span class="s2">"</span><span class="nv">$YELLOW</span><span class="s2"> Please set \$BUCKET_NAME environment"</span> <span class="o">&amp;&amp;</span> <span class="nb">exit</span>  <span class="o">||</span> <span class="nv">BUCKET_NAME</span><span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">BUCKET_NAME</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">[[</span> -z <span class="s2">"</span><span class="si">${</span><span class="nv">SECRET_KEY</span><span class="si">}</span><span class="s2">"</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> log <span class="s2">"</span><span class="nv">$YELLOW</span><span class="s2"> Please set \$SECRET_KEY environment"</span> <span class="o">&amp;&amp;</span> <span class="nb">exit</span>  <span class="o">||</span> <span class="nv">SECRET_KEY</span><span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">SECRET_KEY</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">[[</span> -z <span class="s2">"</span><span class="si">${</span><span class="nv">ACCESS_KEY</span><span class="si">}</span><span class="s2">"</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> log <span class="s2">"</span><span class="nv">$YELLOW</span><span class="s2"> Please set \$ACCESS_KEY environment"</span> <span class="o">&amp;&amp;</span> <span class="nb">exit</span>  <span class="o">||</span> <span class="nv">ACCESS_KEY</span><span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">ACCESS_KEY</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">[[</span> -z <span class="s2">"</span><span class="si">${</span><span class="nv">HOST</span><span class="si">}</span><span class="s2">"</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> log <span class="s2">"</span><span class="nv">$YELLOW</span><span class="s2"> Please set \$HOST environment"</span> <span class="o">&amp;&amp;</span> <span class="nb">exit</span>  <span class="o">||</span> <span class="nv">HOST</span><span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">HOST</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">[[</span> -z <span class="s2">"</span><span class="si">${</span><span class="nv">BACKUP_DIR</span><span class="si">}</span><span class="s2">"</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> log <span class="s2">"</span><span class="nv">$YELLOW</span><span class="s2"> Please set \$BACKUP_DIR environment"</span> <span class="o">&amp;&amp;</span> <span class="nb">exit</span>  <span class="o">||</span> <span class="nv">BACKUP_DIR</span><span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">BACKUP_DIR</span><span class="si">}</span><span class="s2">"</span>
+
+<span class="o">}</span>
+
+
+upload_to_s3<span class="o">(){</span>
+    <span class="nv">files</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>ls <span class="nv">$BACKUP_DIR</span><span class="k">)</span><span class="s2">"</span>
+    <span class="k">for</span> i <span class="k">in</span> <span class="si">${</span><span class="nv">files</span><span class="p">[@]</span><span class="si">}</span><span class="p">;</span><span class="k">do</span>
+        log <span class="s2">"</span><span class="nv">$YELLO</span><span class="s2"> upload  </span><span class="nv">$i</span><span class="s2"> to s3..."</span>
+        s3cmd -c ~/.s3cfg put <span class="nv">$BACKUP_DIR</span>/<span class="nv">$i</span> s3://<span class="nv">$BUCKET_NAME</span>/
+        log <span class="s2">"</span><span class="nv">$GREEN</span><span class="s2"> bakcup (</span><span class="nv">$i</span><span class="s2">) uploaded to s3 successfully"</span>
+        rm -f <span class="nv">$BACKUP_DIR</span>/<span class="nv">$i</span>
+        log <span class="s2">"</span><span class="nv">$YELLOW</span><span class="s2"> </span><span class="nv">$i</span><span class="s2"> removed successfully from server"</span>
+    <span class="k">done</span>
+
+<span class="o">}</span>
+
+main<span class="o">(){</span>
+
+pre
+upload_to_s3
+
+<span class="nv">obj_num</span><span class="o">=</span><span class="k">$(</span>s3cmd -c ~/.s3cfg ls s3://hasan-test24 <span class="p">|</span> awk <span class="s1">'{print $NF}'</span> <span class="p">|</span> wc -l<span class="k">)</span>
+log <span class="s2">"</span><span class="nv">$YELLOW</span><span class="s2"> Number of backups in s3: </span><span class="nv">$obj_num</span><span class="s2">"</span>
+<span class="k">if</span> <span class="o">((</span> obj_num &gt; <span class="nv">$BACKUP_NUM</span><span class="o">))</span><span class="p">;</span>
+<span class="k">then</span>
+    <span class="nv">differ</span><span class="o">=</span><span class="k">$((</span><span class="nv">$obj_num</span> <span class="o">-</span> <span class="m">8</span><span class="k">))</span>
+    log <span class="s2">"</span><span class="nv">$RED</span><span class="s2"> Number of backups that is higher than </span><span class="nv">$BACKUP_NUM</span><span class="s2">: </span><span class="nv">$differ</span><span class="s2">"</span>
+    <span class="nv">rm_obj_lst</span><span class="o">=</span><span class="k">$(</span>s3cmd -c ~/.s3cfg ls s3://<span class="nv">$BUCKET_NAME</span> <span class="p">|</span> awk <span class="s1">'{print $NF}'</span> <span class="p">|</span> head -n <span class="si">${</span><span class="nv">differ</span><span class="si">}</span><span class="k">)</span>
+    <span class="k">for</span> i <span class="k">in</span> <span class="si">${</span><span class="nv">rm_obj_lst</span><span class="p">[@]</span><span class="si">}</span><span class="p">;</span><span class="k">do</span>
+        log <span class="s2">"</span><span class="nv">$RED</span><span class="s2"> Extra backup: </span><span class="nv">$i</span><span class="s2">"</span>
+    <span class="k">done</span>
+    log <span class="s2">"</span><span class="nv">$YELLOW</span><span class="s2"> Removing proccess started"</span>
+    <span class="k">for</span> i <span class="k">in</span> <span class="si">${</span><span class="nv">rm_obj_lst</span><span class="p">[@]</span><span class="si">}</span><span class="p">;</span><span class="k">do</span>
+        log <span class="s2">"</span><span class="nv">$BLUE</span><span class="s2"> </span><span class="k">$(</span>s3cmd -c ~/.s3cfg rm <span class="nv">$i</span><span class="k">)</span><span class="s2">"</span>
+    <span class="k">done</span>
+    log <span class="s2">"</span><span class="nv">$GREEN</span><span class="s2"> </span><span class="nv">$differ</span><span class="s2"> backup object removed successfully"</span>
+<span class="k">else</span>
+    log <span class="s2">"</span><span class="nv">$GREEN</span><span class="s2"> You don't have extra backup"</span>
+<span class="k">fi</span>
+<span class="o">}</span>
+
+main
 </code></pre></div>
-<table>
-<thead>
-<tr>
-<th align="left">ARP cache entry state        </th>
-<th>meaning</th>
-<th>action if used</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left">permanent</td>
-<td>never expires; never verified</td>
-<td>reset use counter</td>
-</tr>
-<tr>
-<td align="left">noarp</td>
-<td>normal expiration; never verified</td>
-<td>reset use counter</td>
-</tr>
-<tr>
-<td align="left">reachable</td>
-<td>normal expiration</td>
-<td>reset use counter</td>
-</tr>
-<tr>
-<td align="left">stale</td>
-<td>still usable; needs verification</td>
-<td>reset use counter; change state to delay</td>
-</tr>
-<tr>
-<td align="left">delay</td>
-<td>schedule ARP request; needs verification</td>
-<td>reset use counter</td>
-</tr>
-<tr>
-<td align="left">probe</td>
-<td>sending ARP request</td>
-<td>reset use counter</td>
-</tr>
-<tr>
-<td align="left">incomplete</td>
-<td>first ARP request sent</td>
-<td>send ARP request</td>
-</tr>
-<tr>
-<td align="left">failed</td>
-<td>no response received</td>
-<td>send ARP request</td>
-</tr>
-</tbody>
-</table>
-<h3 id="create-permenent-arp-record">Create permenent arp record:</h3>
-<div class="highlight"><pre><span></span><code>arp -s <span class="m">192</span>.168.1.2 <span class="m">11</span>:22:33:44:55:66 <span class="c1"># add new persist record</span>
+<h2 id="step-1">🥭 Step 1</h2>
+<p>Run this command on your mongodb server to create backup file and send that to backup server</p>
+<div class="highlight"><span class="filename">mongodump</span><pre><span></span><code>mongodump --host <span class="m">192</span>.168.200.120 --port <span class="m">27017</span> -u admin -p XXXXXXXXXX --authenticationDatabase<span class="o">=</span>XXXXXXX --db<span class="o">=</span>XXXXXXX --gzip --archive <span class="p">|</span> ssh ubuntu@backupServer -p22 <span class="s2">"cat - &gt; /BACKUP/</span><span class="k">$(</span>date <span class="s1">'+%Y-%m-%d_%H:%M:%S_%p'</span><span class="k">)</span><span class="s2">"</span>
 </code></pre></div>
-<h4 id="result">Result:</h4>
-<div class="highlight"><span class="filename">ip neigh</span><pre><span></span><code><span class="m">192</span>.168.1.4 dev wlp1s0 lladdr <span class="m">11</span>:22:33:44:55:66 PERMANENT &lt;---
-<span class="m">192</span>.168.1.1 dev wlp1s0 lladdr <span class="m">40</span>:a2:20:99:99:99 REACHABLE
-</code></pre></div>
-<h3 id="remove-any-record-from-cache-table">Remove any record from cache table:</h3>
-<div class="highlight"><span class="filename">Remove record</span><pre><span></span><code>arp -d <span class="m">192</span>.168.1.2 <span class="m">11</span>:22:33:44:55:66
-</code></pre></div>
-<p><a class="md-button" href="http://localhost:8000/security/attacks/arp-cache-poisoning/">ARP cache poisoning</a>
-<a class="md-button" href="http://localhost:8000/security/attacks/arp-spoofing/">ARP spoofing</a></p>
+<h2 id="step-2">🥭 Step 2</h2>
+<p>Move above script to your backup server and run this command to upload backup files on s3 storage and remove them from server.
+<div class="highlight"><span class="filename">mongo-backup.sh</span><pre><span></span><code>env <span class="nv">BACKUP_NUM</span><span class="o">=</span><span class="m">8</span> <span class="nv">BUCKET_NAME</span><span class="o">=</span>XXXXXXXXX <span class="nv">SECRET_KEY</span><span class="o">=</span>XXXXXXXX  <span class="nv">ACCESS_KEY</span><span class="o">=</span>XXXXX <span class="nv">HOST</span><span class="o">=</span>XXXXXX <span class="nv">BACKUP_DIR</span><span class="o">=</span>/BACKUP bash mongo-backup.sh
+</code></pre></div></p>
 <h2 id="__comments">Comments</h2>
 <!-- Insert generated snippet here -->
 <script async="" crossorigin="anonymous" data-category="General" data-category-id="DIC_kwDOIXCVtM4CSWdV" data-emit-metadata="0" data-input-position="bottom" data-lang="en" data-mapping="pathname" data-reactions-enabled="1" data-repo="vector-mj/doccod" data-repo-id="R_kgDOIXCVtA" data-strict="0" data-theme="light_tritanopia" src="https://giscus.app/client.js">
@@ -473,7 +459,7 @@ _gateway <span class="o">(</span><span class="m">192</span>.168.1.1<span class="
 </main>
 <footer class="md-footer">
 <nav aria-label="Footer" class="md-footer__inner md-grid">
-<a aria-label="Previous: Home" class="md-footer__link md-footer__link--prev" href="../../.." rel="prev">
+<a aria-label="Previous: LVM" class="md-footer__link md-footer__link--prev" href="../lvm/" rel="prev">
 <div class="md-footer__button md-icon">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
 </div>
@@ -482,17 +468,17 @@ _gateway <span class="o">(</span><span class="m">192</span>.168.1.1<span class="
 <span class="md-footer__direction">
                 Previous
               </span>
-              Home
+              LVM
             </div>
 </div>
 </a>
-<a aria-label="Next: CURL" class="md-footer__link md-footer__link--next" href="../curl/" rel="next">
+<a aria-label="Next: Arp cache poisoning" class="md-footer__link md-footer__link--next" href="../../../security/attacks/arp-cache-poisoning/" rel="next">
 <div class="md-footer__title">
 <div class="md-ellipsis">
 <span class="md-footer__direction">
                 Next
               </span>
-              CURL
+              Arp cache poisoning
             </div>
 </div>
 <div class="md-footer__button md-icon">
