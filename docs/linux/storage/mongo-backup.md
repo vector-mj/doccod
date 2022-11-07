@@ -81,7 +81,7 @@ main(){
 pre
 upload_to_s3
 
-obj_num=$(s3cmd -c ~/.s3cfg ls s3://hasan-test24 | awk '{print $NF}' | wc -l)
+obj_num=$(s3cmd -c ~/.s3cfg ls s3://$BUCKET_NAME | awk '{print $NF}' | wc -l)
 log "$YELLOW Number of backups in s3: $obj_num"
 if (( obj_num > $BACKUP_NUM));
 then
