@@ -7,7 +7,7 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <link href="../../../assets/logo.png" rel="icon"/>
 <meta content="mkdocs-1.4.2, mkdocs-material-8.5.7" name="generator"/>
-<title>LVM - DoCCoD</title>
+<title>Tcpdump - DoCCoD</title>
 <link href="../../../assets/stylesheets/main.20d9efc8.min.css" rel="stylesheet"/>
 <link href="../../../assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -29,7 +29,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#lvm">
+<a class="md-skip" href="#what-is-tcpdump">
           Skip to content
         </a>
 </div>
@@ -53,7 +53,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              LVM
+              Tcpdump
             
           </span>
 </div>
@@ -132,8 +132,8 @@
           Linux
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" id="__nav_2_1" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" id="__nav_2_1" type="checkbox"/>
 <label class="md-nav__link" for="__nav_2_1">
           Network
           <span class="md-nav__icon md-icon"></span>
@@ -145,30 +145,67 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../network/arp/">
+<a class="md-nav__link" href="../arp/">
         ARP
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../network/curl/">
+<a class="md-nav__link" href="../curl/">
         CURL
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../network/netplan/">
+<a class="md-nav__link" href="../netplan/">
         Netplan
       </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../network/tcpdump/">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Tcpdump
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
         Tcpdump
       </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#what-is-tcpdump">
+    What is TcpDump ?
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tcp-flags">
+    Tcp Flags
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tcpdump-commands">
+    Tcpdump commands
+  </a>
+<nav aria-label="Tcpdump commands" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tcpdump-examples">
+    Tcpdump Examples
+  </a>
 </li>
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" id="__nav_2_2" type="checkbox"/>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" id="__nav_2_2" type="checkbox"/>
 <label class="md-nav__link" for="__nav_2_2">
           Storage
           <span class="md-nav__icon md-icon"></span>
@@ -179,66 +216,13 @@
           Storage
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-          LVM
-          <span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../storage/lvm/">
         LVM
       </a>
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#logical-volume-managment">
-    Logical Volume Managment
-  </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#physical-volume-pv">
-    physical volume (PV)
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#volume-group-vg">
-    volume group (VG)
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#logical-volume-lv">
-    logical volume (LV)
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#physical-extent-pe">
-    physical extent (PE)
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#logical-extent-le">
-    logical extent (LE)
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#mapping-modes-linearstriped">
-    mapping modes (linear/striped)
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#lvm-on-three-scsi-disk">
-    LVM on three SCSI disk
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../mongo-backup/">
+<a class="md-nav__link" href="../../storage/mongo-backup/">
         Mongo backup
       </a>
 </li>
@@ -323,44 +307,28 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#logical-volume-managment">
-    Logical Volume Managment
+<a class="md-nav__link" href="#what-is-tcpdump">
+    What is TcpDump ?
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#physical-volume-pv">
-    physical volume (PV)
+<a class="md-nav__link" href="#tcp-flags">
+    Tcp Flags
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#volume-group-vg">
-    volume group (VG)
+<a class="md-nav__link" href="#tcpdump-commands">
+    Tcpdump commands
+  </a>
+<nav aria-label="Tcpdump commands" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tcpdump-examples">
+    Tcpdump Examples
   </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#logical-volume-lv">
-    logical volume (LV)
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#physical-extent-pe">
-    physical extent (PE)
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#logical-extent-le">
-    logical extent (LE)
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#mapping-modes-linearstriped">
-    mapping modes (linear/striped)
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#lvm-on-three-scsi-disk">
-    LVM on three SCSI disk
-  </a>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -369,147 +337,167 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="lvm">LVM</h1>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../assets/lvm.webp"><img alt="lvm" src="../../../assets/lvm.webp"/></a></p>
-<h2 id="logical-volume-managment">Logical Volume Managment</h2>
-<div class="highlight"><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">+-- Volume Group --------------------------------+</span><span class="w"></span>
-<span class="l l-Scalar l-Scalar-Plain">|                                                |</span><span class="w"></span>
-<span class="l l-Scalar l-Scalar-Plain">|    +----------------------------------------+  |</span><span class="w"></span>
-<span class="l l-Scalar l-Scalar-Plain">| PV | PE |  PE | PE | PE | PE | PE | PE | PE |  |</span><span class="w"></span>
-<span class="l l-Scalar l-Scalar-Plain">|    +----------------------------------------+  |</span><span class="w"></span>
-<span class="l l-Scalar l-Scalar-Plain">|      .          .          .        .          |</span><span class="w"></span>
-<span class="l l-Scalar l-Scalar-Plain">|      .          .          .        .          |</span><span class="w"></span>
-<span class="l l-Scalar l-Scalar-Plain">|    +----------------------------------------+  |</span><span class="w"></span>
-<span class="l l-Scalar l-Scalar-Plain">| LV | LE |  LE | LE | LE | LE | LE | LE | LE |  |</span><span class="w"></span>
-<span class="l l-Scalar l-Scalar-Plain">|    +----------------------------------------+  |</span><span class="w"></span>
-<span class="l l-Scalar l-Scalar-Plain">|            .          .        .         .     |</span><span class="w"></span>
-<span class="l l-Scalar l-Scalar-Plain">|            .          .        .         .     |</span><span class="w"></span>
-<span class="l l-Scalar l-Scalar-Plain">|    +----------------------------------------+  |</span><span class="w"></span>
-<span class="l l-Scalar l-Scalar-Plain">| PV | PE |  PE | PE | PE | PE | PE | PE | PE |  |</span><span class="w"></span>
-<span class="l l-Scalar l-Scalar-Plain">|    +----------------------------------------+  |</span><span class="w"></span>
-<span class="l l-Scalar l-Scalar-Plain">|                                                |</span><span class="w"></span>
-<span class="l l-Scalar l-Scalar-Plain">+------------------------------------------------+</span><span class="w"></span>
-
-
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">hda1   hdc1      (PV:s on partitions or whole disks)</span><span class="w">                        </span>
-<span class="w">       </span><span class="l l-Scalar l-Scalar-Plain">\   /</span><span class="w">                                                                    </span>
-<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">\ /</span><span class="w">                                                                     </span>
-<span class="w">       </span><span class="l l-Scalar l-Scalar-Plain">diskvg        (VG)</span><span class="w">                                                       </span>
-<span class="w">       </span><span class="l l-Scalar l-Scalar-Plain">/  |  \</span><span class="w">                                                                  </span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">/   |   \</span><span class="w">                                                                 </span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">usrlv rootlv varlv (LV:s)</span><span class="w"></span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">|      |     |</span><span class="w">                                                              </span>
-<span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ext2  reiserfs  xfs (filesystems)</span><span class="w">                                        </span>
+<h1>Tcpdump</h1>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../assets/tcpdump.jpg"><img alt="tcpdump" src="../../../assets/tcpdump.jpg" width="700"/></a></p>
+<h2 id="what-is-tcpdump">What is TcpDump ?</h2>
+<p>TcpDump is a tool for monitoring and sniffing data that are on network interface card, for example if you have issue for connecting to another system in your network or you want to trace all type of requests and responces in your network, tcpdump is your hero in this type of situations.</p>
+<h2 id="tcp-flags">Tcp Flags</h2>
+<div class="highlight"><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">Unskilled Attackers Pester Real Security Folks</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">==============================================</span><span class="w"></span>
+<span class="w">                     </span><span class="l l-Scalar l-Scalar-Plain">TCPDUMP FLAGS</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">Unskilled =  URG  =  (Not Displayed in Flag Field, Displayed elsewhere)</span><span class="w"> </span>
+<span class="l l-Scalar l-Scalar-Plain">Attackers =  ACK  =  (Not Displayed in Flag Field, Displayed elsewhere)</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">Pester    =  PSH  =  [P] (Push Data)</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">Real      =  RST  =  [R] (Reset Connection)</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">Security  =  SYN  =  [S] (Start Connection)</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">Folks     =  FIN  =  [F] (Finish Connection)</span><span class="w"></span>
+<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">SYN-ACK =  [S.] (SynAcK Packet)</span><span class="w"></span>
+<span class="w">                     </span><span class="l l-Scalar l-Scalar-Plain">[.] (No Flag Set)</span><span class="w"></span>
 </code></pre></div>
-<h2 id="physical-volume-pv">physical volume (PV)</h2>
-<blockquote>
-<p>A physical volume is typically a hard disk, though it may well just be a device that 'looks' like a hard disk (eg. a software raid device). </p>
-</blockquote>
-<h2 id="volume-group-vg">volume group (VG)</h2>
-<blockquote>
-<p>The Volume Group is the highest level abstraction used within the LVM. It gathers together a collection of Logical Volumes and Physical Volumes into one administrative unit. </p>
-</blockquote>
-<h2 id="logical-volume-lv">logical volume (LV)</h2>
-<blockquote>
-<p>The equivalent of a disk partition in a non-LVM system. The LV is visible as a standard block device; as such the LV can contain a file system (eg. /home). </p>
-</blockquote>
-<h2 id="physical-extent-pe">physical extent (PE)</h2>
-<blockquote>
-<p>Each physical volume is divided chunks of data, known as physical extents, these extents have the same size as the logical extents for the volume group. </p>
-</blockquote>
-<h2 id="logical-extent-le">logical extent (LE)</h2>
-<blockquote>
-<p>Each logical volume is split into chunks of data, known as logical extents. The extent size is the same for all logical volumes in the volume group. </p>
-</blockquote>
-<h2 id="mapping-modes-linearstriped">mapping modes (linear/striped)</h2>
-<div class="highlight"><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">+--------------------------------------------------------------------------+</span><span class="w"></span>
-<span class="l l-Scalar l-Scalar-Plain">| The administrator can choose between a couple of</span><span class="w">                          </span>
-<span class="l l-Scalar l-Scalar-Plain">| general strategies for mapping logical extents onto physical extents</span><span class="p p-Indicator">:</span><span class="w"></span>
-<span class="p p-Indicator">|</span><span class="w"></span>
-<span class="p p-Indicator">|</span><span class="err"> Linear mapping will assign a range of PE's to an area of</span><span class="w"> </span>
-<span class="p p-Indicator">|</span><span class="err"> an LV in order eg., LE 1 - 99 map to PV1 and LE 100 - 347 map onto PV2.</span><span class="w"></span>
-<span class="p p-Indicator">|</span><span class="w"></span>
-<span class="p p-Indicator">|</span><span class="err"> Striped mapping will interleave the chunks of the logical extents</span><span class="w"></span>
-<span class="p p-Indicator">|</span><span class="err"> across a number of physical volumes eg.,</span><span class="w"></span>
-<span class="p p-Indicator">|</span><span class="w"></span>
-<span class="p p-Indicator">|</span><span class="err">  1st chunk of LE[1] -&gt; PV1[1],</span><span class="w"></span>
-<span class="p p-Indicator">|</span><span class="err">  2nd chunk of LE[1] -&gt; PV2[1],</span><span class="w"></span>
-<span class="p p-Indicator">|</span><span class="err">  3rd chunk of LE[1] -&gt; PV3[1],</span><span class="w"></span>
-<span class="p p-Indicator">|</span><span class="err">  4th chunk of LE[1] -&gt; PV1[2],</span><span class="w"></span>
-<span class="l l-Scalar l-Scalar-Plain">+--------------------------------------------------------------------------+</span><span class="w"></span>
+<h2 id="tcpdump-commands">Tcpdump commands</h2>
+<p><div class="highlight"><span class="filename">🟢 List of NICs</span><pre><span></span><code>tcpdump -D
 </code></pre></div>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><input id="__tabbed_1_3" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">PV</label><label for="__tabbed_1_2">VG</label><label for="__tabbed_1_3">LV</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<p><div class="highlight"><span class="filename">Create PV</span><pre><span></span><code>pvcreate /dev/hdb
+<div class="highlight"><span class="filename">🟢 Count of packets for sniffing</span><pre><span></span><code>tcpdump -c200
 </code></pre></div>
-<div class="highlight"><span class="filename">Remove PV</span><pre><span></span><code>pvcreate /dev/hdb
+<div class="highlight"><span class="filename">🟢 Select interface card</span><pre><span></span><code>tcpdump -i <span class="m">3</span>
 </code></pre></div>
-<div class="highlight"><span class="filename">Remove from VG</span><pre><span></span><code>pvdisplay /dev/hda1
-vgreduce my_volume_group /dev/hda1 <span class="c1"># or pvmove</span>
+<div class="highlight"><span class="filename">🟢 Dont resolve hostname</span><pre><span></span><code>tcpdump -n
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Dont resolve portname</span><pre><span></span><code>tcpdump -nn
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Specifi packet size to capture</span><pre><span></span><code>tcpdump -s100 <span class="c1"># 100 byte</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Verbose information</span><pre><span></span><code>tcpdump -vvv
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Hex output</span><pre><span></span><code>tcpdump -X
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Hex output with ethernet header</span><pre><span></span><code>tcpdump -XX
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Write result on file (pcap) with maxsize of file</span><pre><span></span><code>tcpdump -w ./test.pcap -C <span class="m">2</span> -G <span class="m">6</span> <span class="c1"># 2 megabyte, rotate every 6 sec</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Read data from pcap file</span><pre><span></span><code>tcpdump -r ./test.pcap
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Display ASCII format</span><pre><span></span><code>tcpdump -A
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Quiet mode</span><pre><span></span><code>tcpdump -q
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Get timestamp with packet number</span><pre><span></span><code>tcpdump -ttt -#
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Decrypt IPSEC traffic</span><pre><span></span><code>tcpdump -E 
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Pipe output</span><pre><span></span><code>tcpdump -l <span class="p">|</span> grep XXXX
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Directino of captured packets (in|out)</span><pre><span></span><code>tcpdump -Q out
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Monitor mode</span><pre><span></span><code>tcpdump -I
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Ethernet header</span><pre><span></span><code>tcpdump -e
+</code></pre></div>
+<div class="highlight"><span class="filename">🟢 Tcp sequence number</span><pre><span></span><code>tcpdump -S
 </code></pre></div></p>
-</div>
-<div class="tabbed-block">
-<p><div class="highlight"><span class="filename">Create</span><pre><span></span><code>vgcreate my_volume_group /dev/hda1 /dev/hdb1 
-</code></pre></div>
-<div class="highlight"><span class="filename">Remove</span><pre><span></span><code>vgchange -a n my_volume_group
-vgremove my_volume_group
-</code></pre></div>
-<div class="highlight"><span class="filename">Extend</span><pre><span></span><code>vgextend my_volume_group /dev/hdc1 <span class="c1"># new physical volume</span>
-</code></pre></div>
-<div class="highlight"><span class="filename">Activate</span><pre><span></span><code>vgchange -a y my_volume_group 
-</code></pre></div>
-<div class="highlight"><span class="filename">Diactivate</span><pre><span></span><code>vgchange -a n my_volume_group 
-</code></pre></div></p>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><span class="filename">Create</span><pre><span></span><code><span class="c1"># For linear, size:1500m, name:testlv, from:testvg</span>
-lvcreate -L1500 -ntestlv testvg
+<h3 id="tcpdump-examples">Tcpdump Examples</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">##USAGE##</span><span class="w"></span>
+<span class="nt">Basic communication and pipe output for grep</span><span class="p">:</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">tcpdump -nS -l | grep Host</span><span class="w"></span>
 
-<span class="c1"># To create a 100 LE large logical volume with 2 stripes and stripe size 4 KB.</span>
-lvcreate -i2 -I4 -l100 -nanothertestlv testvg
+<span class="nt">Basic communication (very verbose)</span><span class="p">:</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">tcpdump -nnvvS</span><span class="w"></span>
 
-<span class="c1"># If you want to create an LV that uses the entire VG, use vgdisplay to find the "Total PE" size, then use that when running lvcreate.</span>
-vgdisplay testvg <span class="p">|</span> grep <span class="s2">"Total PE"</span>
-<span class="c1">#&gt; Total PE              10230</span>
-lvcreate -l <span class="m">10230</span> testvg -n mylv
+<span class="nt">A deeper look at the traffic</span><span class="p">:</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">tcpdump -nnvvXS</span><span class="w"></span>
 
-<span class="c1"># If you want the logical volume to be allocated from a specific physical volume in the volume group, specify the PV or PVs at the end of the lvcreate command line.</span>
-lvcreate -L <span class="m">1500</span> -ntestlv testvg /dev/sdg
-</code></pre></div>
-<div class="highlight"><span class="filename">Remove</span><pre><span></span><code><span class="c1"># Removing a logical volume</span>
-umount /dev/myvg/homevol
-lvremove /dev/myvg/homevol
-</code></pre></div>
-<div class="highlight"><span class="filename">Extend</span><pre><span></span><code>lvextend -L12G /dev/myvg/homevol
-lvextend -L+1G /dev/myvg/homevol
-</code></pre></div>
-</div>
-</div>
-</input></input></input></div>
-<h2 id="lvm-on-three-scsi-disk">LVM on three SCSI disk</h2>
-<div class="highlight"><pre><span></span><code><span class="c1"># create PV</span>
-pvcreate /dev/sda
-pvcreate /dev/sdb
-pvcreate /dev/sdc
+<span class="nt">Heavy packet viewing</span><span class="p">:</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">tcpdump -nnvvXSs 1514</span><span class="w"></span>
 
-<span class="c1"># create VG</span>
-vgcreate my_vg /dev/sda /dev/sdb /dev/sdc
+<span class="nt">look for traffic based on IP address</span><span class="p">:</span><span class="w"> </span>
+<span class="l l-Scalar l-Scalar-Plain">tcpdump host 1.2.3.4</span><span class="w"></span>
 
-<span class="c1"># create LV</span>
-lvcreate -L1G -n my_lv my_vg
-<span class="c1"># or with stripes</span>
-lvcreate -L1G -i3 -I4 -n my_lv my_vg 
+<span class="nt">find traffic from only a source or destination</span><span class="p">:</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">tcpdump src 2.3.4.5</span><span class="w"> </span>
+<span class="l l-Scalar l-Scalar-Plain">tcpdump dst 3.4.5.6</span><span class="w"></span>
 
+<span class="nt">capture an entire network using CIDR notation</span><span class="p">:</span><span class="w"> </span>
+<span class="l l-Scalar l-Scalar-Plain">tcpdump net 1.2.3.0/24</span><span class="w"></span>
 
-<span class="c1"># Format</span>
-mke2fs /dev/my_vg/my_lv
+<span class="l l-Scalar l-Scalar-Plain">works for tcp, udp, and icmp</span><span class="p p-Indicator">:</span><span class="w"> </span>
+<span class="l l-Scalar l-Scalar-Plain">tcpdump icmp</span><span class="w"></span>
 
-<span class="c1"># Mount</span>
-mount /dev/my_vg/my_lv /mnt
+<span class="nt">see only traffic to or from a certain port</span><span class="p">:</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">tcpdump port 3389</span><span class="w"></span>
 
-<span class="c1"># Status</span>
-df
+<span class="nt">filter based on the source or destination port</span><span class="p">:</span><span class="w"> </span>
+<span class="l l-Scalar l-Scalar-Plain">tcpdump src port 1025</span><span class="w"> </span><span class="c1"># tcpdump dst port 389</span><span class="w"></span>
+
+<span class="l l-Scalar l-Scalar-Plain">src/dst, port, protocol</span><span class="p p-Indicator">:</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">tcpdump src port 1025 and tcp</span><span class="w"> </span>
+<span class="l l-Scalar l-Scalar-Plain">tcpdump udp and src port 53</span><span class="w"></span>
+
+<span class="nt">see traffic to any port in a range</span><span class="p">:</span><span class="w"> </span>
+<span class="l l-Scalar l-Scalar-Plain">tcpdump portrange 21-23</span><span class="w"></span>
+
+<span class="nt">only see packets below or above a certain size</span><span class="p">:</span><span class="w"> </span>
+<span class="l l-Scalar l-Scalar-Plain">tcpdump less 32</span><span class="w"> </span>
+<span class="l l-Scalar l-Scalar-Plain">tcpdump greater 128</span><span class="w"></span>
+
+<span class="nt">filtering for size using symbols</span><span class="p">:</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">tcpdump &gt; 32</span><span class="w"> </span>
+<span class="l l-Scalar l-Scalar-Plain">tcpdump &lt;= 128</span><span class="w"></span>
+
+<span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">Note</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">Only the PSH</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">RST</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">SYN</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">and FIN flags are displayed in tcpdump‘s flag field output. URGs and ACKs are displayed</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">but they are shown elsewhere in the output rather than in the flags field</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+
+<span class="l l-Scalar l-Scalar-Plain">Keep in mind the reasons these filters work. The filters above find these various packets because tcp[13] looks at offset 13 in the TCP header, the number represents the location within the byte, and the !=0 means that the flag in question is set to 1, i.e. it’s on.</span><span class="w"></span>
+
+<span class="nt">Show all URG packets</span><span class="p">:</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">tcpdump 'tcp[13] &amp; 32 != 0'</span><span class="w"></span>
+
+<span class="nt">Show all ACK packets</span><span class="p">:</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">tcpdump 'tcp[13] &amp; 16 != 0'</span><span class="w"></span>
+
+<span class="nt">Show all PSH packets</span><span class="p">:</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">tcpdump 'tcp[13] &amp; 8 != 0'</span><span class="w"></span>
+
+<span class="nt">Show all RST packets</span><span class="p">:</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">tcpdump 'tcp[13] &amp; 4 != 0'</span><span class="w"></span>
+
+<span class="nt">Show all SYN packets</span><span class="p">:</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">tcpdump 'tcp[13] &amp; 2 != 0'</span><span class="w"></span>
+
+<span class="nt">Show all FIN packets</span><span class="p">:</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">tcpdump 'tcp[13] &amp; 1 != 0'</span><span class="w"></span>
+
+<span class="nt">Show all SYN-ACK packets</span><span class="p">:</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">tcpdump 'tcp[13] = 18'</span><span class="w"></span>
+
+<span class="nt">Show icmp echo request and reply</span><span class="p">:</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">tcpdump -n icmp and 'icmp[0] != 8 and icmp[0] != 0'</span><span class="w"></span>
+
+<span class="nt">Show all IP packets with a non-zero TOS field (one byte TOS field is at offset 1 in IP header)</span><span class="p">:</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">tcpdump -v -n ip and ip[1]!=0</span><span class="w"></span>
+
+<span class="nt">Show all IP packets with TTL less than some value (on byte TTL field is at offset 8 in IP header)</span><span class="p">:</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">tcpdump -v ip and 'ip[8]&lt;2'</span><span class="w"></span>
+
+<span class="nt">Show TCP SYN packets</span><span class="p">:</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">tcpdump -n tcp and port 80 and 'tcp[tcpflags] &amp; tcp-syn == tcp-syn'</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">tcpdump tcp and port 80 and 'tcp[tcpflags] == tcp-syn'</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">tcpdump -i &lt;interface&gt; "tcp[tcpflags] &amp; (tcp-syn) != 0"</span><span class="w"></span>
+
+<span class="nt">Show TCP ACK packets</span><span class="p">:</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">tcpdump -i &lt;interface&gt; "tcp[tcpflags] &amp; (tcp-ack) != 0"</span><span class="w"></span>
+
+<span class="l l-Scalar l-Scalar-Plain">Show TCP SYN/ACK packets (typically, responses from servers)</span><span class="p p-Indicator">:</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">tcpdump -n tcp and 'tcp[tcpflags] &amp; (tcp-syn|tcp-ack) == (tcp-syn|tcp-ack)'</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">tcpdump -n tcp and 'tcp[tcpflags] &amp; tcp-syn == tcp-syn' and 'tcp[tcpflags] &amp; tcp-ack == tcp-ack'</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">tcpdump -i &lt;interface&gt; "tcp[tcpflags] &amp; (tcp-syn|tcp-ack) != 0"</span><span class="w"></span>
+
+<span class="nt">Show TCP FIN packets</span><span class="p">:</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">tcpdump -i &lt;interface&gt; "tcp[tcpflags] &amp; (tcp-fin) != 0"</span><span class="w"></span>
+
+<span class="nt">Show ARP Packets with MAC address</span><span class="p">:</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">tcpdump -vv -e -nn ether proto 0x0806</span><span class="w"></span>
+
+<span class="nt">Show packets of a specified length (IP packet length (16 bits) is located at offset 2 in IP header)</span><span class="p">:</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">tcpdump -l icmp and '(ip[2:2]&gt;50)' -w - |tcpdump -r - -v ip and '(ip[2:2]&lt;60)'</span><span class="w"></span>
 </code></pre></div>
 <h2 id="__comments">Comments</h2>
 <!-- Insert generated snippet here -->
@@ -550,7 +538,7 @@ df
 </main>
 <footer class="md-footer">
 <nav aria-label="Footer" class="md-footer__inner md-grid">
-<a aria-label="Previous: Tcpdump" class="md-footer__link md-footer__link--prev" href="../../network/tcpdump/" rel="prev">
+<a aria-label="Previous: Netplan" class="md-footer__link md-footer__link--prev" href="../netplan/" rel="prev">
 <div class="md-footer__button md-icon">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
 </div>
@@ -559,17 +547,17 @@ df
 <span class="md-footer__direction">
                 Previous
               </span>
-              Tcpdump
+              Netplan
             </div>
 </div>
 </a>
-<a aria-label="Next: Mongo backup" class="md-footer__link md-footer__link--next" href="../mongo-backup/" rel="next">
+<a aria-label="Next: LVM" class="md-footer__link md-footer__link--next" href="../../storage/lvm/" rel="next">
 <div class="md-footer__title">
 <div class="md-ellipsis">
 <span class="md-footer__direction">
                 Next
               </span>
-              Mongo backup
+              LVM
             </div>
 </div>
 <div class="md-footer__button md-icon">
