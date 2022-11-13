@@ -4,6 +4,39 @@ comments: true
 
 ![mongo](../../assets/mongo.png){width=800}
 
+## 🥭 Install mongosh
+```sh title="Download mongosh v1.6"
+{
+wget https://downloads.mongodb.com/compass/mongodb-mongosh_1.6.0_amd64.deb
+apt install ./mongodb-mongosh_1.6.0_amd64.deb -y
+}
+```
+
+## 🥭 Install mongodump
+```sh title="Download mongo-tools v100.6.1"
+{
+wget https://fastdl.mongodb.org/tools/db/mongodb-database-tools-ubuntu2204-x86_64-100.6.1.deb
+apt install ./mongodb-database-tools-ubuntu2204-x86_64-100.6.1.deb -y
+}
+```
+
+## 🥭 Install mongodb with docker
+```yaml title="docker-compose.yaml"
+version: '3.7'
+services:
+  mongodb_container:
+    container_name: mongodb_server
+    restart: always
+    image: mongo:5.0
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: rootUser
+      MONGO_INITDB_ROOT_PASSWORD: "qDMQkFpzNdNrwsrGBBjervH7lef6UcmTh/IyMtiW"
+    ports:
+      - 37017:27017
+    volumes:
+      - '/etc/mongod.conf:/etc/mongod.conf'
+      - '/var/lib/mongo:/data/db'
+```
 
 
 ## 📄 Backup Script 

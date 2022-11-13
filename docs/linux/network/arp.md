@@ -45,6 +45,15 @@ arp -s 192.168.1.2 11:22:33:44:55:66 # add new persist record
 192.168.1.1 dev wlp1s0 lladdr 40:a2:20:99:99:99 REACHABLE
 ```
 
+### Disable arp on NIC
+```sh
+ip link set arp off dev eth0 ; ip link set arp on dev eth0
+```
+
+### Flush all apr record with ip command
+```sh
+ip -s -s neigh flush all
+```
 
 
 ### Remove any record from cache table:
