@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>CodoC</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on CodoC</description>
+    <image>
+      <title>CodoC</title>
+      <url>http://localhost:1313/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>http://localhost:1313/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.135.0</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 15 Sep 2020 11:30:03 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>My 1st post</title>
+      <link>http://localhost:1313/posts/page/</link>
+      <pubDate>Tue, 15 Sep 2020 11:30:03 +0000</pubDate>
+      <guid>http://localhost:1313/posts/page/</guid>
+      <description>Desc Text.</description>
+    </item>
+    <item>
+      <title>Ceph OSD Management</title>
+      <link>http://localhost:1313/posts/ceph/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/ceph/</guid>
+      <description>&lt;p&gt;Ceph Object Storage Daemons (OSDs) are the heart and soul of the Ceph storage platform.
+Each OSD manages a local device and together they provide the distributed storage. Rook will automate creation and management of OSDs to hide the complexity
+based on the desired state in the CephCluster CR as much as possible. This guide will walk through some of the scenarios
+to configure OSDs where more configuration may be required.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
