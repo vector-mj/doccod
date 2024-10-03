@@ -1,4 +1,4 @@
-baseURL: "https://mjha.ir/"
+baseURL: "http://mjha.ir/"
 title: CodoC
 paginate: 5
 theme: PaperMod
