@@ -43,7 +43,7 @@ params:
   assets:
     # disableHLJS: true # to disable highlight.js
     # disableFingerprinting: true
-    favicon: "<link / abs url>"
+    favicon: "/images/books.png"
     favicon16x16: "<link / abs url>"
     favicon32x32: "<link / abs url>"
     apple_touch_icon: "<link / abs url>"
@@ -59,7 +59,7 @@ params:
     enabled: false # needs to be explicitly set
     title: ExampleSite
     subtitle: "This is subtitle"
-    imageUrl: "<img location>"
+    imageUrl: "/images/clickhouse.png"
     imageWidth: 120
     imageHeight: 120
     imageTitle: my image
@@ -71,7 +71,7 @@ params:
 
   # home-info mode
   homeInfoParams:
-    Title: "Hey 😑📚"
+    Title: "😑📚"
     Content: Cheatsheet bank
 
   # socialIcons:
@@ -96,7 +96,7 @@ params:
     # hiddenInSingle: true # hide on single page
 
   editPost:
-    URL: "https://github.com/<path_to_repo>/content"
+    URL: "https://github.com/vector-mj/doccod/tree/hugo/content"
     Text: "Suggest Changes" # edit text
     appendFilePath: true # to append file path to Edit link
 

@@ -1,5 +1,6 @@
 ---
 title: Ceph OSD Management
+date: 2020-09-15T11:30:03+00:00
 cover:
   image: "https://img.favpng.com/4/12/5/mountain-desktop-wallpaper-4k-resolution-png-favpng-6ptkc4nPsWqUmYtTxEr1d5QSB.jpg"
   # can also paste direct link from external site
