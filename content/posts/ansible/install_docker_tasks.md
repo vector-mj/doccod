@@ -39,17 +39,6 @@ cover:
     - apt_install_docker
   retries: 10
   delay: 1
-    
-# - name: Add Docker repository
-#   ansible.builtin.apt_repository:
-#     repo: >-
-#       deb [arch={{ arch_mapping[ansible_architecture] | default(ansible_architecture) }}
-#       signed-by=/etc/apt/keyrings/docker.gpg]
-#       https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename }} stable
-#     filename: docker
-#     state: present
-#   tags:
-#     - apt_install_docker
 
 - name: create docker repo url
   ansible.builtin.shell:
