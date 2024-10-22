@@ -1,4 +1,3 @@
-
 ---
 title: Ansible tasks to install compose project
 date: 2024-10-22T10:26:41+00:00
