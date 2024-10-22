@@ -1,9 +1,17 @@
-
-### Ansible tasks to install docker
+---
+title: Ansible tasks to install docker
+date: 2024-10-22T09:26:41+00:00
+tags: ["ansible","docker"]
+cover:
+  image: "/images/ansible.webp"
+  # can also paste direct link from external site
+  # ex. https://i.ibb.co/K0HVPBd/paper-mod-profilemode.png
+  alt: "<alt text>"
+  caption: "<text>"
+  relative: false # To us
+---
 
 ```yaml
-
-
 - name: Create directory for Docker's GPG key
   ansible.builtin.file:
     path: /etc/apt/keyrings
@@ -113,5 +121,5 @@
     - containerd.service
   tags:
     - apt_install_docker
-    
+
 ```
