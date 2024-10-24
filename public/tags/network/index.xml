@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Network on CodoC</title>
+    <link>http://localhost:3129/tags/network/</link>
+    <description>Recent content in Network on CodoC</description>
+    <image>
+      <title>CodoC</title>
+      <url>http://localhost:3129/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>http://localhost:3129/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.135.0</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 24 Oct 2024 10:26:41 +0000</lastBuildDate>
+    <atom:link href="http://localhost:3129/tags/network/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Iptables</title>
+      <link>http://localhost:3129/posts/network/iptables/</link>
+      <pubDate>Thu, 24 Oct 2024 10:26:41 +0000</pubDate>
+      <guid>http://localhost:3129/posts/network/iptables/</guid>
+      <description>&lt;h1 id=&#34;iptables-how-it-works-and-how-we-can-configure-it&#34;&gt;Iptables (How it works and how we can configure it)&lt;/h1&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h2 id=&#34;how-to-discover-all-used-ports&#34;&gt;How to discover all used ports&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;You can use &lt;code&gt;ss&lt;/code&gt; tools in linux to find out open ports in your system.&lt;/li&gt;
+&lt;li&gt;You should check all of these ports and you ought to specify want you wanna to do with these ports.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;things-that-you-should-consider&#34;&gt;Things that you should consider&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Your services
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;0.0.0.0:1080 | listen      | proxy server&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;0.0.0.0:9100 | listen      | node exporter&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;0.0.0.0:22   | listen      | ssh daemon&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Internet and established connections
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;8.8.8.8:443  | established | you connected to a website (internet)&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Inter process communications
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;loopback interface&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Block ping&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;iptables-chains&#34;&gt;Iptables chains&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;PREROUTING&lt;/li&gt;
+&lt;li&gt;FORWARD&lt;/li&gt;
+&lt;li&gt;INPUT&lt;/li&gt;
+&lt;li&gt;OUTPUT&lt;/li&gt;
+&lt;li&gt;POSTROUTING&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;iptables-tables-within-chains&#34;&gt;Iptables tables (within chains)&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;raw&lt;/li&gt;
+&lt;li&gt;mangle&lt;/li&gt;
+&lt;li&gt;nat&lt;/li&gt;
+&lt;li&gt;filter&lt;/li&gt;
+&lt;li&gt;security&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;iptables-flags&#34;&gt;Iptables flags&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;# Specification&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;-t &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;table name&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;c&#34;&gt;# Operations&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;-A &amp;lt;CHAIN_NAME&amp;gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;append&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;-I &amp;lt;CHAIN_NAME&amp;gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;insert&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;-D &amp;lt;CHAIN_NAME&amp;gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;delete&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;-s &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;src addr | ip addr or block&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;-d &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;dst addr | ip addr or block&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;-i &amp;lt;IFACE_NAME&amp;gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;in  interface&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;-o &amp;lt;IFACE_NAME&amp;gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;out interface&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;-p &amp;lt;PROTOCOL&amp;gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;tcp | udp | icmp | /etc/protocols | zero mean all &lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;-c &amp;lt;PACKET&amp;gt; &amp;lt;BYTES&amp;gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;initalizing counter values&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;c&#34;&gt;# Target&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;-j &amp;lt;TARGET&amp;gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;MASQUERADE | DROP | LOG | ACCEPT | REJECT | REDIRECT | MARK | MIRROR&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;c&#34;&gt;# Auxilary&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;-P &amp;lt;CHAIN_NAME&amp;gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;default policy of chain&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;-Z &amp;lt;CHAIN_NAME&amp;gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;reset packet counters&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;-F &amp;lt;CHAIN_NAME&amp;gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;flush rules&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;-p &amp;lt;PROTOCOL&amp;gt; -h &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;help note&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;what-is-masquerading&#34;&gt;What is Masquerading&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;IP Masquerading, helps machines with non-routable IP addresses to access the Internet via the machine that is masquerading. It is a form of NAT (Network Address Translation).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;examples&#34;&gt;Examples&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; &amp;gt; /proc/sys/net/ipv4/ip_forward
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iptables -P FORWARD ACCEPT
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iptables -t nat -A POSTROUTING -j MASQUERADE
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iptables -t nat -A PREROUTING -p tcp -j REDIRECT --to-ports &lt;span class=&#34;m&#34;&gt;4545&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;----------------------------------------------------------------------
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iptables -t nat -A OUTPUT -p tcp -m owner ! --uid-owner proxy -j REDIRECT --to-ports &lt;span class=&#34;m&#34;&gt;4545&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iptables -t nat -I OUTPUT -p tcp -m owner --uid-owner root -j RETURN
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;----------------------------------------------------------------------
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iptables -P INPUT DROP
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iptables -A INPUT -p tcp --sport &lt;span class=&#34;m&#34;&gt;80&lt;/span&gt; -j ACCEPT
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iptables -A INPUT -p tcp --sport &lt;span class=&#34;m&#34;&gt;80&lt;/span&gt; -m state --state NEW,ESTABLISHED -j ACCEPT
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iptables -A INPUT -p udp --sport &lt;span class=&#34;m&#34;&gt;53&lt;/span&gt; -j ACCEPT
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iptables -A INPUT -p tcp --sport &lt;span class=&#34;m&#34;&gt;53&lt;/span&gt; -j ACCEPT
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;----------------------------------------------------------------------
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iptables -A INPUT -i lo -j ACCEPT
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iptables -A INPUT -i eth0 -p udp -m multiport --sport 53,67 -m state --state ESTABLISHED,RELATED -j ACCEPT
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iptables -A INPUT -i eth0 -p tcp -m multiport --sport 53,80 -m state --state ESTABLISHED,RELATED -j ACCEPT
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;----------------------------------------------------------------------
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;EXTIF&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;eth0&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;EXTIP&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;192.168.111.140&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;UNIVERSE&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;0.0.0.0/0&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iptables -A INPUT -i &lt;span class=&#34;nv&#34;&gt;$EXTIF&lt;/span&gt; -s &lt;span class=&#34;nv&#34;&gt;$UNIVERSE&lt;/span&gt; -d &lt;span class=&#34;nv&#34;&gt;$EXTIP&lt;/span&gt; -m state --state ESTABLISHED,RELATED -j ACCEPT
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;----------------------------------------------------------------------
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iptables -A INPUT -i lo -j LOG --log-prefix &lt;span class=&#34;s2&#34;&gt;&amp;#34;ILO:&amp;#34;&lt;/span&gt; --log-level info &lt;span class=&#34;c1&#34;&gt;# /var/log/syslog&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iptables -A INPUT -j LOG --log-prefix &lt;span class=&#34;s2&#34;&gt;&amp;#34;IDROP:&amp;#34;&lt;/span&gt; --log-level debug    &lt;span class=&#34;c1&#34;&gt;# /var/log/syslog&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;----------------------------------------------------------------------
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iptables -t nat    -A PREROUTING  -p tcp -d 15.45.23.67 --dport &lt;span class=&#34;m&#34;&gt;80&lt;/span&gt; -j DNAT --to-destination 192.168.1.1-192.168.1.10
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iptables -t nat    -A POSTROUTING -p tcp --dst &lt;span class=&#34;nv&#34;&gt;$HTTP_IP&lt;/span&gt; --dport &lt;span class=&#34;m&#34;&gt;80&lt;/span&gt; -j SNAT --to-source &lt;span class=&#34;nv&#34;&gt;$LAN_IP&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iptables -t mangle -A FORWARD -p tcp --dport &lt;span class=&#34;m&#34;&gt;80&lt;/span&gt; -j DSCP --set-dscp &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;----------------------------------------------------------------------
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iptables -A OUTPUT -p icmp -o eth0 -j ACCEPT          
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iptables -A INPUT  -p icmp --icmp-type echo-reply -s 0/0 -i eth0 -j ACCEPT     
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iptables -A INPUT  -p icmp --icmp-type destination-unreachable -s 0/0 -i eth0 -j ACCEPT  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iptables -A INPUT  -p icmp --icmp-type time-exceeded -s 0/0 -i eth0 -j ACCEPT       
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iptables -A INPUT  -p icmp -i eth0 -j DROP  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;----------------------------------------------------------------------
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;useful-links&#34;&gt;Useful links&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.frozentux.net/iptables-tutorial/chunkyhtml&#34;&gt;https://www.frozentux.net/iptables-tutorial/chunkyhtml&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+  </channel>
+</rss>

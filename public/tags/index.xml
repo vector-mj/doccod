@@ -2,36 +2,78 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Tags on CodoC</title>
-    <link>http://localhost:1313/tags/</link>
+    <link>http://localhost:3129/tags/</link>
     <description>Recent content in Tags on CodoC</description>
     <image>
       <title>CodoC</title>
-      <url>http://localhost:1313/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>http://localhost:1313/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+      <url>http://localhost:3129/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>http://localhost:3129/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- 0.135.0</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 16 Sep 2020 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 24 Oct 2024 10:26:41 +0000</lastBuildDate>
+    <atom:link href="http://localhost:3129/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Firewall</title>
+      <link>http://localhost:3129/tags/firewall/</link>
+      <pubDate>Thu, 24 Oct 2024 10:26:41 +0000</pubDate>
+      <guid>http://localhost:3129/tags/firewall/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Network</title>
+      <link>http://localhost:3129/tags/network/</link>
+      <pubDate>Thu, 24 Oct 2024 10:26:41 +0000</pubDate>
+      <guid>http://localhost:3129/tags/network/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tools</title>
+      <link>http://localhost:3129/tags/tools/</link>
+      <pubDate>Thu, 24 Oct 2024 10:26:41 +0000</pubDate>
+      <guid>http://localhost:3129/tags/tools/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ansible</title>
+      <link>http://localhost:3129/tags/ansible/</link>
+      <pubDate>Tue, 22 Oct 2024 10:26:41 +0000</pubDate>
+      <guid>http://localhost:3129/tags/ansible/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Docker</title>
+      <link>http://localhost:3129/tags/docker/</link>
+      <pubDate>Tue, 22 Oct 2024 10:26:41 +0000</pubDate>
+      <guid>http://localhost:3129/tags/docker/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Vim</title>
+      <link>http://localhost:3129/tags/vim/</link>
+      <pubDate>Thu, 24 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>http://localhost:3129/tags/vim/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Clickhouse</title>
-      <link>http://localhost:1313/tags/clickhouse/</link>
+      <link>http://localhost:3129/tags/clickhouse/</link>
       <pubDate>Wed, 16 Sep 2020 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/clickhouse/</guid>
+      <guid>http://localhost:3129/tags/clickhouse/</guid>
       <description></description>
     </item>
     <item>
       <title>Database</title>
-      <link>http://localhost:1313/tags/database/</link>
+      <link>http://localhost:3129/tags/database/</link>
       <pubDate>Wed, 16 Sep 2020 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/database/</guid>
+      <guid>http://localhost:3129/tags/database/</guid>
       <description></description>
     </item>
     <item>
       <title>Git</title>
-      <link>http://localhost:1313/tags/git/</link>
+      <link>http://localhost:3129/tags/git/</link>
       <pubDate>Wed, 16 Sep 2020 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/git/</guid>
+      <guid>http://localhost:3129/tags/git/</guid>
       <description></description>
     </item>
   </channel>

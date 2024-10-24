@@ -71,7 +71,7 @@ params:
 
   # home-info mode
   homeInfoParams:
-    Title: "😑📚"
+    Title: "📮"
     Content: Cheatsheet bank
 
   # socialIcons:

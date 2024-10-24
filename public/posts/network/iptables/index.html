@@ -1,0 +1,408 @@
+<!doctype html><html lang=en dir=auto><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=3129&amp;path=livereload" data-no-instant defer></script><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Iptables | CodoC</title>
+<meta name=keywords content="network,tools,firewall"><meta name=description content='Iptables (How it works and how we can configure it)
+
+
+How to discover all used ports
+
+You can use ss tools in linux to find out open ports in your system.
+You should check all of these ports and you ought to specify want you wanna to do with these ports.
+
+Things that you should consider
+
+Your services
+
+0.0.0.0:1080 | listen      | proxy server
+0.0.0.0:9100 | listen      | node exporter
+0.0.0.0:22   | listen      | ssh daemon
+
+
+Internet and established connections
+
+8.8.8.8:443  | established | you connected to a website (internet)
+
+
+Inter process communications
+
+loopback interface
+
+
+Block ping
+
+Iptables chains
+
+PREROUTING
+FORWARD
+INPUT
+OUTPUT
+POSTROUTING
+
+Iptables tables (within chains)
+
+raw
+mangle
+nat
+filter
+security
+
+Iptables flags
+# Specification
+-t : table name
+
+# Operations
+-A <CHAIN_NAME> : append
+-I <CHAIN_NAME> : insert
+-D <CHAIN_NAME> : delete
+
+-s : src addr | ip addr or block
+-d : dst addr | ip addr or block
+
+-i <IFACE_NAME> : in  interface
+-o <IFACE_NAME> : out interface
+
+-p <PROTOCOL> : tcp | udp | icmp | /etc/protocols | zero mean all 
+-c <PACKET> <BYTES> : initalizing counter values
+# Target
+-j <TARGET> : MASQUERADE | DROP | LOG | ACCEPT | REJECT | REDIRECT | MARK | MIRROR
+
+# Auxilary
+-P <CHAIN_NAME> : default policy of chain
+-Z <CHAIN_NAME> : reset packet counters
+-F <CHAIN_NAME> : flush rules
+-p <PROTOCOL> -h : help note
+What is Masquerading
+
+IP Masquerading, helps machines with non-routable IP addresses to access the Internet via the machine that is masquerading. It is a form of NAT (Network Address Translation).
+
+Examples
+echo 1 > /proc/sys/net/ipv4/ip_forward
+iptables -P FORWARD ACCEPT
+iptables -t nat -A POSTROUTING -j MASQUERADE
+iptables -t nat -A PREROUTING -p tcp -j REDIRECT --to-ports 4545
+----------------------------------------------------------------------
+iptables -t nat -A OUTPUT -p tcp -m owner ! --uid-owner proxy -j REDIRECT --to-ports 4545
+iptables -t nat -I OUTPUT -p tcp -m owner --uid-owner root -j RETURN
+----------------------------------------------------------------------
+iptables -P INPUT DROP
+iptables -A INPUT -p tcp --sport 80 -j ACCEPT
+iptables -A INPUT -p tcp --sport 80 -m state --state NEW,ESTABLISHED -j ACCEPT
+iptables -A INPUT -p udp --sport 53 -j ACCEPT
+iptables -A INPUT -p tcp --sport 53 -j ACCEPT
+----------------------------------------------------------------------
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A INPUT -i eth0 -p udp -m multiport --sport 53,67 -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -A INPUT -i eth0 -p tcp -m multiport --sport 53,80 -m state --state ESTABLISHED,RELATED -j ACCEPT
+----------------------------------------------------------------------
+EXTIF="eth0"
+EXTIP="192.168.111.140"
+UNIVERSE="0.0.0.0/0"
+iptables -A INPUT -i $EXTIF -s $UNIVERSE -d $EXTIP -m state --state ESTABLISHED,RELATED -j ACCEPT
+----------------------------------------------------------------------
+iptables -A INPUT -i lo -j LOG --log-prefix "ILO:" --log-level info # /var/log/syslog
+iptables -A INPUT -j LOG --log-prefix "IDROP:" --log-level debug    # /var/log/syslog
+----------------------------------------------------------------------
+iptables -t nat    -A PREROUTING  -p tcp -d 15.45.23.67 --dport 80 -j DNAT --to-destination 192.168.1.1-192.168.1.10
+iptables -t nat    -A POSTROUTING -p tcp --dst $HTTP_IP --dport 80 -j SNAT --to-source $LAN_IP
+iptables -t mangle -A FORWARD -p tcp --dport 80 -j DSCP --set-dscp 1
+----------------------------------------------------------------------
+iptables -A OUTPUT -p icmp -o eth0 -j ACCEPT          
+iptables -A INPUT  -p icmp --icmp-type echo-reply -s 0/0 -i eth0 -j ACCEPT     
+iptables -A INPUT  -p icmp --icmp-type destination-unreachable -s 0/0 -i eth0 -j ACCEPT  
+iptables -A INPUT  -p icmp --icmp-type time-exceeded -s 0/0 -i eth0 -j ACCEPT       
+iptables -A INPUT  -p icmp -i eth0 -j DROP  
+----------------------------------------------------------------------
+Useful links
+
+https://www.frozentux.net/iptables-tutorial/chunkyhtml
+'><meta name=author content="Me"><link rel=canonical href=http://localhost:3129/posts/network/iptables/><meta name=google-site-verification content="XYZabc"><meta name=yandex-verification content="XYZabc"><meta name=msvalidate.01 content="XYZabc"><link crossorigin=anonymous href=/assets/css/stylesheet.54405a410796490bc874ab6181fac9b675753cc2b91375d8f882566459eca428.css integrity="sha256-VEBaQQeWSQvIdKthgfrJtnV1PMK5E3XY+IJWZFnspCg=" rel="preload stylesheet" as=style><link rel=icon href=http://localhost:3129/images/books.png><link rel=icon type=image/png sizes=16x16 href=http://localhost:3129/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=32x32 href=http://localhost:3129/%3Clink%20/%20abs%20url%3E><link rel=apple-touch-icon href=http://localhost:3129/%3Clink%20/%20abs%20url%3E><link rel=mask-icon href=http://localhost:3129/%3Clink%20/%20abs%20url%3E><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=http://localhost:3129/posts/network/iptables/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><meta property="og:title" content="Iptables"><meta property="og:description" content='Iptables (How it works and how we can configure it)
+
+
+How to discover all used ports
+
+You can use ss tools in linux to find out open ports in your system.
+You should check all of these ports and you ought to specify want you wanna to do with these ports.
+
+Things that you should consider
+
+Your services
+
+0.0.0.0:1080 | listen      | proxy server
+0.0.0.0:9100 | listen      | node exporter
+0.0.0.0:22   | listen      | ssh daemon
+
+
+Internet and established connections
+
+8.8.8.8:443  | established | you connected to a website (internet)
+
+
+Inter process communications
+
+loopback interface
+
+
+Block ping
+
+Iptables chains
+
+PREROUTING
+FORWARD
+INPUT
+OUTPUT
+POSTROUTING
+
+Iptables tables (within chains)
+
+raw
+mangle
+nat
+filter
+security
+
+Iptables flags
+# Specification
+-t : table name
+
+# Operations
+-A <CHAIN_NAME> : append
+-I <CHAIN_NAME> : insert
+-D <CHAIN_NAME> : delete
+
+-s : src addr | ip addr or block
+-d : dst addr | ip addr or block
+
+-i <IFACE_NAME> : in  interface
+-o <IFACE_NAME> : out interface
+
+-p <PROTOCOL> : tcp | udp | icmp | /etc/protocols | zero mean all 
+-c <PACKET> <BYTES> : initalizing counter values
+# Target
+-j <TARGET> : MASQUERADE | DROP | LOG | ACCEPT | REJECT | REDIRECT | MARK | MIRROR
+
+# Auxilary
+-P <CHAIN_NAME> : default policy of chain
+-Z <CHAIN_NAME> : reset packet counters
+-F <CHAIN_NAME> : flush rules
+-p <PROTOCOL> -h : help note
+What is Masquerading
+
+IP Masquerading, helps machines with non-routable IP addresses to access the Internet via the machine that is masquerading. It is a form of NAT (Network Address Translation).
+
+Examples
+echo 1 > /proc/sys/net/ipv4/ip_forward
+iptables -P FORWARD ACCEPT
+iptables -t nat -A POSTROUTING -j MASQUERADE
+iptables -t nat -A PREROUTING -p tcp -j REDIRECT --to-ports 4545
+----------------------------------------------------------------------
+iptables -t nat -A OUTPUT -p tcp -m owner ! --uid-owner proxy -j REDIRECT --to-ports 4545
+iptables -t nat -I OUTPUT -p tcp -m owner --uid-owner root -j RETURN
+----------------------------------------------------------------------
+iptables -P INPUT DROP
+iptables -A INPUT -p tcp --sport 80 -j ACCEPT
+iptables -A INPUT -p tcp --sport 80 -m state --state NEW,ESTABLISHED -j ACCEPT
+iptables -A INPUT -p udp --sport 53 -j ACCEPT
+iptables -A INPUT -p tcp --sport 53 -j ACCEPT
+----------------------------------------------------------------------
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A INPUT -i eth0 -p udp -m multiport --sport 53,67 -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -A INPUT -i eth0 -p tcp -m multiport --sport 53,80 -m state --state ESTABLISHED,RELATED -j ACCEPT
+----------------------------------------------------------------------
+EXTIF="eth0"
+EXTIP="192.168.111.140"
+UNIVERSE="0.0.0.0/0"
+iptables -A INPUT -i $EXTIF -s $UNIVERSE -d $EXTIP -m state --state ESTABLISHED,RELATED -j ACCEPT
+----------------------------------------------------------------------
+iptables -A INPUT -i lo -j LOG --log-prefix "ILO:" --log-level info # /var/log/syslog
+iptables -A INPUT -j LOG --log-prefix "IDROP:" --log-level debug    # /var/log/syslog
+----------------------------------------------------------------------
+iptables -t nat    -A PREROUTING  -p tcp -d 15.45.23.67 --dport 80 -j DNAT --to-destination 192.168.1.1-192.168.1.10
+iptables -t nat    -A POSTROUTING -p tcp --dst $HTTP_IP --dport 80 -j SNAT --to-source $LAN_IP
+iptables -t mangle -A FORWARD -p tcp --dport 80 -j DSCP --set-dscp 1
+----------------------------------------------------------------------
+iptables -A OUTPUT -p icmp -o eth0 -j ACCEPT          
+iptables -A INPUT  -p icmp --icmp-type echo-reply -s 0/0 -i eth0 -j ACCEPT     
+iptables -A INPUT  -p icmp --icmp-type destination-unreachable -s 0/0 -i eth0 -j ACCEPT  
+iptables -A INPUT  -p icmp --icmp-type time-exceeded -s 0/0 -i eth0 -j ACCEPT       
+iptables -A INPUT  -p icmp -i eth0 -j DROP  
+----------------------------------------------------------------------
+Useful links
+
+https://www.frozentux.net/iptables-tutorial/chunkyhtml
+'><meta property="og:type" content="article"><meta property="og:url" content="http://localhost:3129/posts/network/iptables/"><meta property="og:image" content="http://localhost:3129/images/network.jpg"><meta property="article:section" content="posts"><meta property="article:published_time" content="2024-10-24T10:26:41+00:00"><meta property="article:modified_time" content="2024-10-24T10:26:41+00:00"><meta property="og:site_name" content="CodoC"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="http://localhost:3129/images/network.jpg"><meta name=twitter:title content="Iptables"><meta name=twitter:description content='Iptables (How it works and how we can configure it)
+
+
+How to discover all used ports
+
+You can use ss tools in linux to find out open ports in your system.
+You should check all of these ports and you ought to specify want you wanna to do with these ports.
+
+Things that you should consider
+
+Your services
+
+0.0.0.0:1080 | listen      | proxy server
+0.0.0.0:9100 | listen      | node exporter
+0.0.0.0:22   | listen      | ssh daemon
+
+
+Internet and established connections
+
+8.8.8.8:443  | established | you connected to a website (internet)
+
+
+Inter process communications
+
+loopback interface
+
+
+Block ping
+
+Iptables chains
+
+PREROUTING
+FORWARD
+INPUT
+OUTPUT
+POSTROUTING
+
+Iptables tables (within chains)
+
+raw
+mangle
+nat
+filter
+security
+
+Iptables flags
+# Specification
+-t : table name
+
+# Operations
+-A <CHAIN_NAME> : append
+-I <CHAIN_NAME> : insert
+-D <CHAIN_NAME> : delete
+
+-s : src addr | ip addr or block
+-d : dst addr | ip addr or block
+
+-i <IFACE_NAME> : in  interface
+-o <IFACE_NAME> : out interface
+
+-p <PROTOCOL> : tcp | udp | icmp | /etc/protocols | zero mean all 
+-c <PACKET> <BYTES> : initalizing counter values
+# Target
+-j <TARGET> : MASQUERADE | DROP | LOG | ACCEPT | REJECT | REDIRECT | MARK | MIRROR
+
+# Auxilary
+-P <CHAIN_NAME> : default policy of chain
+-Z <CHAIN_NAME> : reset packet counters
+-F <CHAIN_NAME> : flush rules
+-p <PROTOCOL> -h : help note
+What is Masquerading
+
+IP Masquerading, helps machines with non-routable IP addresses to access the Internet via the machine that is masquerading. It is a form of NAT (Network Address Translation).
+
+Examples
+echo 1 > /proc/sys/net/ipv4/ip_forward
+iptables -P FORWARD ACCEPT
+iptables -t nat -A POSTROUTING -j MASQUERADE
+iptables -t nat -A PREROUTING -p tcp -j REDIRECT --to-ports 4545
+----------------------------------------------------------------------
+iptables -t nat -A OUTPUT -p tcp -m owner ! --uid-owner proxy -j REDIRECT --to-ports 4545
+iptables -t nat -I OUTPUT -p tcp -m owner --uid-owner root -j RETURN
+----------------------------------------------------------------------
+iptables -P INPUT DROP
+iptables -A INPUT -p tcp --sport 80 -j ACCEPT
+iptables -A INPUT -p tcp --sport 80 -m state --state NEW,ESTABLISHED -j ACCEPT
+iptables -A INPUT -p udp --sport 53 -j ACCEPT
+iptables -A INPUT -p tcp --sport 53 -j ACCEPT
+----------------------------------------------------------------------
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A INPUT -i eth0 -p udp -m multiport --sport 53,67 -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -A INPUT -i eth0 -p tcp -m multiport --sport 53,80 -m state --state ESTABLISHED,RELATED -j ACCEPT
+----------------------------------------------------------------------
+EXTIF="eth0"
+EXTIP="192.168.111.140"
+UNIVERSE="0.0.0.0/0"
+iptables -A INPUT -i $EXTIF -s $UNIVERSE -d $EXTIP -m state --state ESTABLISHED,RELATED -j ACCEPT
+----------------------------------------------------------------------
+iptables -A INPUT -i lo -j LOG --log-prefix "ILO:" --log-level info # /var/log/syslog
+iptables -A INPUT -j LOG --log-prefix "IDROP:" --log-level debug    # /var/log/syslog
+----------------------------------------------------------------------
+iptables -t nat    -A PREROUTING  -p tcp -d 15.45.23.67 --dport 80 -j DNAT --to-destination 192.168.1.1-192.168.1.10
+iptables -t nat    -A POSTROUTING -p tcp --dst $HTTP_IP --dport 80 -j SNAT --to-source $LAN_IP
+iptables -t mangle -A FORWARD -p tcp --dport 80 -j DSCP --set-dscp 1
+----------------------------------------------------------------------
+iptables -A OUTPUT -p icmp -o eth0 -j ACCEPT          
+iptables -A INPUT  -p icmp --icmp-type echo-reply -s 0/0 -i eth0 -j ACCEPT     
+iptables -A INPUT  -p icmp --icmp-type destination-unreachable -s 0/0 -i eth0 -j ACCEPT  
+iptables -A INPUT  -p icmp --icmp-type time-exceeded -s 0/0 -i eth0 -j ACCEPT       
+iptables -A INPUT  -p icmp -i eth0 -j DROP  
+----------------------------------------------------------------------
+Useful links
+
+https://www.frozentux.net/iptables-tutorial/chunkyhtml
+'><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"http://localhost:3129/posts/"},{"@type":"ListItem","position":2,"name":"Iptables","item":"http://localhost:3129/posts/network/iptables/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Iptables","name":"Iptables","description":"Iptables (How it works and how we can configure it) How to discover all used ports You can use ss tools in linux to find out open ports in your system. You should check all of these ports and you ought to specify want you wanna to do with these ports. Things that you should consider Your services 0.0.0.0:1080 | listen | proxy server 0.0.0.0:9100 | listen | node exporter 0.0.0.0:22 | listen | ssh daemon Internet and established connections 8.8.8.8:443 | established | you connected to a website (internet) Inter process communications loopback interface Block ping Iptables chains PREROUTING FORWARD INPUT OUTPUT POSTROUTING Iptables tables (within chains) raw mangle nat filter security Iptables flags # Specification -t : table name # Operations -A \u0026lt;CHAIN_NAME\u0026gt; : append -I \u0026lt;CHAIN_NAME\u0026gt; : insert -D \u0026lt;CHAIN_NAME\u0026gt; : delete -s : src addr | ip addr or block -d : dst addr | ip addr or block -i \u0026lt;IFACE_NAME\u0026gt; : in interface -o \u0026lt;IFACE_NAME\u0026gt; : out interface -p \u0026lt;PROTOCOL\u0026gt; : tcp | udp | icmp | /etc/protocols | zero mean all -c \u0026lt;PACKET\u0026gt; \u0026lt;BYTES\u0026gt; : initalizing counter values # Target -j \u0026lt;TARGET\u0026gt; : MASQUERADE | DROP | LOG | ACCEPT | REJECT | REDIRECT | MARK | MIRROR # Auxilary -P \u0026lt;CHAIN_NAME\u0026gt; : default policy of chain -Z \u0026lt;CHAIN_NAME\u0026gt; : reset packet counters -F \u0026lt;CHAIN_NAME\u0026gt; : flush rules -p \u0026lt;PROTOCOL\u0026gt; -h : help note What is Masquerading IP Masquerading, helps machines with non-routable IP addresses to access the Internet via the machine that is masquerading. It is a form of NAT (Network Address Translation). Examples echo 1 \u0026gt; /proc/sys/net/ipv4/ip_forward iptables -P FORWARD ACCEPT iptables -t nat -A POSTROUTING -j MASQUERADE iptables -t nat -A PREROUTING -p tcp -j REDIRECT --to-ports 4545 ---------------------------------------------------------------------- iptables -t nat -A OUTPUT -p tcp -m owner ! --uid-owner proxy -j REDIRECT --to-ports 4545 iptables -t nat -I OUTPUT -p tcp -m owner --uid-owner root -j RETURN ---------------------------------------------------------------------- iptables -P INPUT DROP iptables -A INPUT -p tcp --sport 80 -j ACCEPT iptables -A INPUT -p tcp --sport 80 -m state --state NEW,ESTABLISHED -j ACCEPT iptables -A INPUT -p udp --sport 53 -j ACCEPT iptables -A INPUT -p tcp --sport 53 -j ACCEPT ---------------------------------------------------------------------- iptables -A INPUT -i lo -j ACCEPT iptables -A INPUT -i eth0 -p udp -m multiport --sport 53,67 -m state --state ESTABLISHED,RELATED -j ACCEPT iptables -A INPUT -i eth0 -p tcp -m multiport --sport 53,80 -m state --state ESTABLISHED,RELATED -j ACCEPT ---------------------------------------------------------------------- EXTIF=\u0026#34;eth0\u0026#34; EXTIP=\u0026#34;192.168.111.140\u0026#34; UNIVERSE=\u0026#34;0.0.0.0/0\u0026#34; iptables -A INPUT -i $EXTIF -s $UNIVERSE -d $EXTIP -m state --state ESTABLISHED,RELATED -j ACCEPT ---------------------------------------------------------------------- iptables -A INPUT -i lo -j LOG --log-prefix \u0026#34;ILO:\u0026#34; --log-level info # /var/log/syslog iptables -A INPUT -j LOG --log-prefix \u0026#34;IDROP:\u0026#34; --log-level debug # /var/log/syslog ---------------------------------------------------------------------- iptables -t nat -A PREROUTING -p tcp -d 15.45.23.67 --dport 80 -j DNAT --to-destination 192.168.1.1-192.168.1.10 iptables -t nat -A POSTROUTING -p tcp --dst $HTTP_IP --dport 80 -j SNAT --to-source $LAN_IP iptables -t mangle -A FORWARD -p tcp --dport 80 -j DSCP --set-dscp 1 ---------------------------------------------------------------------- iptables -A OUTPUT -p icmp -o eth0 -j ACCEPT iptables -A INPUT -p icmp --icmp-type echo-reply -s 0/0 -i eth0 -j ACCEPT iptables -A INPUT -p icmp --icmp-type destination-unreachable -s 0/0 -i eth0 -j ACCEPT iptables -A INPUT -p icmp --icmp-type time-exceeded -s 0/0 -i eth0 -j ACCEPT iptables -A INPUT -p icmp -i eth0 -j DROP ---------------------------------------------------------------------- Useful links https://www.frozentux.net/iptables-tutorial/chunkyhtml ","keywords":["network","tools","firewall"],"articleBody":"Iptables (How it works and how we can configure it) How to discover all used ports You can use ss tools in linux to find out open ports in your system. You should check all of these ports and you ought to specify want you wanna to do with these ports. Things that you should consider Your services 0.0.0.0:1080 | listen | proxy server 0.0.0.0:9100 | listen | node exporter 0.0.0.0:22 | listen | ssh daemon Internet and established connections 8.8.8.8:443 | established | you connected to a website (internet) Inter process communications loopback interface Block ping Iptables chains PREROUTING FORWARD INPUT OUTPUT POSTROUTING Iptables tables (within chains) raw mangle nat filter security Iptables flags # Specification -t : table name # Operations -A : append -I : insert -D : delete -s : src addr | ip addr or block -d : dst addr | ip addr or block -i : in interface -o : out interface -p : tcp | udp | icmp | /etc/protocols | zero mean all -c : initalizing counter values # Target -j : MASQUERADE | DROP | LOG | ACCEPT | REJECT | REDIRECT | MARK | MIRROR # Auxilary -P : default policy of chain -Z : reset packet counters -F : flush rules -p -h : help note What is Masquerading IP Masquerading, helps machines with non-routable IP addresses to access the Internet via the machine that is masquerading. It is a form of NAT (Network Address Translation). Examples echo 1 \u003e /proc/sys/net/ipv4/ip_forward iptables -P FORWARD ACCEPT iptables -t nat -A POSTROUTING -j MASQUERADE iptables -t nat -A PREROUTING -p tcp -j REDIRECT --to-ports 4545 ---------------------------------------------------------------------- iptables -t nat -A OUTPUT -p tcp -m owner ! --uid-owner proxy -j REDIRECT --to-ports 4545 iptables -t nat -I OUTPUT -p tcp -m owner --uid-owner root -j RETURN ---------------------------------------------------------------------- iptables -P INPUT DROP iptables -A INPUT -p tcp --sport 80 -j ACCEPT iptables -A INPUT -p tcp --sport 80 -m state --state NEW,ESTABLISHED -j ACCEPT iptables -A INPUT -p udp --sport 53 -j ACCEPT iptables -A INPUT -p tcp --sport 53 -j ACCEPT ---------------------------------------------------------------------- iptables -A INPUT -i lo -j ACCEPT iptables -A INPUT -i eth0 -p udp -m multiport --sport 53,67 -m state --state ESTABLISHED,RELATED -j ACCEPT iptables -A INPUT -i eth0 -p tcp -m multiport --sport 53,80 -m state --state ESTABLISHED,RELATED -j ACCEPT ---------------------------------------------------------------------- EXTIF=\"eth0\" EXTIP=\"192.168.111.140\" UNIVERSE=\"0.0.0.0/0\" iptables -A INPUT -i $EXTIF -s $UNIVERSE -d $EXTIP -m state --state ESTABLISHED,RELATED -j ACCEPT ---------------------------------------------------------------------- iptables -A INPUT -i lo -j LOG --log-prefix \"ILO:\" --log-level info # /var/log/syslog iptables -A INPUT -j LOG --log-prefix \"IDROP:\" --log-level debug # /var/log/syslog ---------------------------------------------------------------------- iptables -t nat -A PREROUTING -p tcp -d 15.45.23.67 --dport 80 -j DNAT --to-destination 192.168.1.1-192.168.1.10 iptables -t nat -A POSTROUTING -p tcp --dst $HTTP_IP --dport 80 -j SNAT --to-source $LAN_IP iptables -t mangle -A FORWARD -p tcp --dport 80 -j DSCP --set-dscp 1 ---------------------------------------------------------------------- iptables -A OUTPUT -p icmp -o eth0 -j ACCEPT iptables -A INPUT -p icmp --icmp-type echo-reply -s 0/0 -i eth0 -j ACCEPT iptables -A INPUT -p icmp --icmp-type destination-unreachable -s 0/0 -i eth0 -j ACCEPT iptables -A INPUT -p icmp --icmp-type time-exceeded -s 0/0 -i eth0 -j ACCEPT iptables -A INPUT -p icmp -i eth0 -j DROP ---------------------------------------------------------------------- Useful links https://www.frozentux.net/iptables-tutorial/chunkyhtml ","wordCount":"554","inLanguage":"en","image":"http://localhost:3129/images/network.jpg","datePublished":"2024-10-24T10:26:41Z","dateModified":"2024-10-24T10:26:41Z","author":{"@type":"Person","name":"Me"},"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:3129/posts/network/iptables/"},"publisher":{"@type":"Organization","name":"CodoC","logo":{"@type":"ImageObject","url":"http://localhost:3129/images/books.png"}}}</script></head><body class=dark id=top><script>localStorage.getItem("pref-theme")==="light"&&document.body.classList.remove("dark")</script><header class=header><nav class=nav><div class=logo><a href=http://localhost:3129/ accesskey=h title="CodoC (Alt + H)"><img src=http://localhost:3129/apple-touch-icon.png alt aria-label=logo height=35>CodoC</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=http://localhost:3129/search/ title="search (Alt + /)" accesskey=/><span>search</span></a></li><li><a href=http://localhost:3129/categories/ title=categories><span>categories</span></a></li><li><a href=http://localhost:3129/tags/ title=tags><span>tags</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=http://localhost:3129/>Home</a>&nbsp;»&nbsp;<a href=http://localhost:3129/posts/>Posts</a></div><h1 class="post-title entry-hint-parent">Iptables</h1><div class=post-meta><span title='2024-10-24 10:26:41 +0000 +0000'>October 24, 2024</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;554 words&nbsp;·&nbsp;Me&nbsp;|&nbsp;<a href=https://github.com/vector-mj/doccod/tree/hugo/content/posts/network/iptables.md rel="noopener noreferrer" target=_blank>Suggest Changes</a></div></header><figure class=entry-cover><img loading=eager src=http://localhost:3129/images/network.jpg alt><p></p></figure><div class=post-content><h1 id=iptables-how-it-works-and-how-we-can-configure-it>Iptables (How it works and how we can configure it)<a hidden class=anchor aria-hidden=true href=#iptables-how-it-works-and-how-we-can-configure-it>#</a></h1><hr><p><img src=/images/packet_flow.png alt="packet flow"></p><h4 id=how-to-discover-all-used-ports>How to discover all used ports<a hidden class=anchor aria-hidden=true href=#how-to-discover-all-used-ports>#</a></h4><ul><li>You can use <code>ss</code> tools in linux to find out open ports in your system.</li><li>You should check all of these ports and you ought to specify want you wanna to do with these ports.</li></ul><h4 id=things-that-you-should-consider>Things that you should consider<a hidden class=anchor aria-hidden=true href=#things-that-you-should-consider>#</a></h4><ul><li>Your services<ul><li><code>0.0.0.0:1080 | listen | proxy server</code></li><li><code>0.0.0.0:9100 | listen | node exporter</code></li><li><code>0.0.0.0:22 | listen | ssh daemon</code></li></ul></li><li>Internet and established connections<ul><li><code>8.8.8.8:443 | established | you connected to a website (internet)</code></li></ul></li><li>Inter process communications<ul><li><code>loopback interface</code></li></ul></li><li>Block ping</li></ul><h4 id=iptables-chains>Iptables chains<a hidden class=anchor aria-hidden=true href=#iptables-chains>#</a></h4><ul><li>PREROUTING</li><li>FORWARD</li><li>INPUT</li><li>OUTPUT</li><li>POSTROUTING</li></ul><h4 id=iptables-tables-within-chains>Iptables tables (within chains)<a hidden class=anchor aria-hidden=true href=#iptables-tables-within-chains>#</a></h4><ul><li>raw</li><li>mangle</li><li>nat</li><li>filter</li><li>security</li></ul><h4 id=iptables-flags>Iptables flags<a hidden class=anchor aria-hidden=true href=#iptables-flags>#</a></h4><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=c># Specification</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>-t </span><span class=p>:</span><span class=w> </span><span class=l>table name</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Operations</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>-A &lt;CHAIN_NAME&gt; </span><span class=p>:</span><span class=w> </span><span class=l>append</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>-I &lt;CHAIN_NAME&gt; </span><span class=p>:</span><span class=w> </span><span class=l>insert</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>-D &lt;CHAIN_NAME&gt; </span><span class=p>:</span><span class=w> </span><span class=l>delete</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>-s </span><span class=p>:</span><span class=w> </span><span class=l>src addr | ip addr or block</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>-d </span><span class=p>:</span><span class=w> </span><span class=l>dst addr | ip addr or block</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>-i &lt;IFACE_NAME&gt; </span><span class=p>:</span><span class=w> </span><span class=l>in  interface</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>-o &lt;IFACE_NAME&gt; </span><span class=p>:</span><span class=w> </span><span class=l>out interface</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>-p &lt;PROTOCOL&gt; </span><span class=p>:</span><span class=w> </span><span class=l>tcp | udp | icmp | /etc/protocols | zero mean all </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>-c &lt;PACKET&gt; &lt;BYTES&gt; </span><span class=p>:</span><span class=w> </span><span class=l>initalizing counter values</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Target</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>-j &lt;TARGET&gt; </span><span class=p>:</span><span class=w> </span><span class=l>MASQUERADE | DROP | LOG | ACCEPT | REJECT | REDIRECT | MARK | MIRROR</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># Auxilary</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>-P &lt;CHAIN_NAME&gt; </span><span class=p>:</span><span class=w> </span><span class=l>default policy of chain</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>-Z &lt;CHAIN_NAME&gt; </span><span class=p>:</span><span class=w> </span><span class=l>reset packet counters</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>-F &lt;CHAIN_NAME&gt; </span><span class=p>:</span><span class=w> </span><span class=l>flush rules</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>-p &lt;PROTOCOL&gt; -h </span><span class=p>:</span><span class=w> </span><span class=l>help note</span><span class=w>
+</span></span></span></code></pre></div><h4 id=what-is-masquerading>What is Masquerading<a hidden class=anchor aria-hidden=true href=#what-is-masquerading>#</a></h4><ul><li>IP Masquerading, helps machines with non-routable IP addresses to access the Internet via the machine that is masquerading. It is a form of NAT (Network Address Translation).</li></ul><h4 id=examples>Examples<a hidden class=anchor aria-hidden=true href=#examples>#</a></h4><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl><span class=nb>echo</span> <span class=m>1</span> &gt; /proc/sys/net/ipv4/ip_forward
+</span></span><span class=line><span class=cl>iptables -P FORWARD ACCEPT
+</span></span><span class=line><span class=cl>iptables -t nat -A POSTROUTING -j MASQUERADE
+</span></span><span class=line><span class=cl>iptables -t nat -A PREROUTING -p tcp -j REDIRECT --to-ports <span class=m>4545</span>
+</span></span><span class=line><span class=cl>----------------------------------------------------------------------
+</span></span><span class=line><span class=cl>iptables -t nat -A OUTPUT -p tcp -m owner ! --uid-owner proxy -j REDIRECT --to-ports <span class=m>4545</span>
+</span></span><span class=line><span class=cl>iptables -t nat -I OUTPUT -p tcp -m owner --uid-owner root -j RETURN
+</span></span><span class=line><span class=cl>----------------------------------------------------------------------
+</span></span><span class=line><span class=cl>iptables -P INPUT DROP
+</span></span><span class=line><span class=cl>iptables -A INPUT -p tcp --sport <span class=m>80</span> -j ACCEPT
+</span></span><span class=line><span class=cl>iptables -A INPUT -p tcp --sport <span class=m>80</span> -m state --state NEW,ESTABLISHED -j ACCEPT
+</span></span><span class=line><span class=cl>iptables -A INPUT -p udp --sport <span class=m>53</span> -j ACCEPT
+</span></span><span class=line><span class=cl>iptables -A INPUT -p tcp --sport <span class=m>53</span> -j ACCEPT
+</span></span><span class=line><span class=cl>----------------------------------------------------------------------
+</span></span><span class=line><span class=cl>iptables -A INPUT -i lo -j ACCEPT
+</span></span><span class=line><span class=cl>iptables -A INPUT -i eth0 -p udp -m multiport --sport 53,67 -m state --state ESTABLISHED,RELATED -j ACCEPT
+</span></span><span class=line><span class=cl>iptables -A INPUT -i eth0 -p tcp -m multiport --sport 53,80 -m state --state ESTABLISHED,RELATED -j ACCEPT
+</span></span><span class=line><span class=cl>----------------------------------------------------------------------
+</span></span><span class=line><span class=cl><span class=nv>EXTIF</span><span class=o>=</span><span class=s2>&#34;eth0&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>EXTIP</span><span class=o>=</span><span class=s2>&#34;192.168.111.140&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>UNIVERSE</span><span class=o>=</span><span class=s2>&#34;0.0.0.0/0&#34;</span>
+</span></span><span class=line><span class=cl>iptables -A INPUT -i <span class=nv>$EXTIF</span> -s <span class=nv>$UNIVERSE</span> -d <span class=nv>$EXTIP</span> -m state --state ESTABLISHED,RELATED -j ACCEPT
+</span></span><span class=line><span class=cl>----------------------------------------------------------------------
+</span></span><span class=line><span class=cl>iptables -A INPUT -i lo -j LOG --log-prefix <span class=s2>&#34;ILO:&#34;</span> --log-level info <span class=c1># /var/log/syslog</span>
+</span></span><span class=line><span class=cl>iptables -A INPUT -j LOG --log-prefix <span class=s2>&#34;IDROP:&#34;</span> --log-level debug    <span class=c1># /var/log/syslog</span>
+</span></span><span class=line><span class=cl>----------------------------------------------------------------------
+</span></span><span class=line><span class=cl>iptables -t nat    -A PREROUTING  -p tcp -d 15.45.23.67 --dport <span class=m>80</span> -j DNAT --to-destination 192.168.1.1-192.168.1.10
+</span></span><span class=line><span class=cl>iptables -t nat    -A POSTROUTING -p tcp --dst <span class=nv>$HTTP_IP</span> --dport <span class=m>80</span> -j SNAT --to-source <span class=nv>$LAN_IP</span>
+</span></span><span class=line><span class=cl>iptables -t mangle -A FORWARD -p tcp --dport <span class=m>80</span> -j DSCP --set-dscp <span class=m>1</span>
+</span></span><span class=line><span class=cl>----------------------------------------------------------------------
+</span></span><span class=line><span class=cl>iptables -A OUTPUT -p icmp -o eth0 -j ACCEPT          
+</span></span><span class=line><span class=cl>iptables -A INPUT  -p icmp --icmp-type echo-reply -s 0/0 -i eth0 -j ACCEPT     
+</span></span><span class=line><span class=cl>iptables -A INPUT  -p icmp --icmp-type destination-unreachable -s 0/0 -i eth0 -j ACCEPT  
+</span></span><span class=line><span class=cl>iptables -A INPUT  -p icmp --icmp-type time-exceeded -s 0/0 -i eth0 -j ACCEPT       
+</span></span><span class=line><span class=cl>iptables -A INPUT  -p icmp -i eth0 -j DROP  
+</span></span><span class=line><span class=cl>----------------------------------------------------------------------
+</span></span></code></pre></div><h4 id=useful-links>Useful links<a hidden class=anchor aria-hidden=true href=#useful-links>#</a></h4><ul><li><a href=https://www.frozentux.net/iptables-tutorial/chunkyhtml>https://www.frozentux.net/iptables-tutorial/chunkyhtml</a></li></ul></div><footer class=post-footer><ul class=post-tags><li><a href=http://localhost:3129/tags/network/>Network</a></li><li><a href=http://localhost:3129/tags/tools/>Tools</a></li><li><a href=http://localhost:3129/tags/firewall/>Firewall</a></li></ul><nav class=paginav><a class=next href=http://localhost:3129/posts/ansible/install_compose_project/><span class=title>Next »</span><br><span>Ansible tasks to install compose project</span></a></nav><ul class=share-buttons><li><a target=_blank rel="noopener noreferrer" aria-label="share Iptables on x" href="https://x.com/intent/tweet/?text=Iptables&amp;url=http%3a%2f%2flocalhost%3a3129%2fposts%2fnetwork%2fiptables%2f&amp;hashtags=network%2ctools%2cfirewall"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M512 62.554V449.446C512 483.97 483.97 512 449.446 512H62.554C28.03 512 0 483.97.0 449.446V62.554C0 28.03 28.029.0 62.554.0H449.446C483.971.0 512 28.03 512 62.554zM269.951 190.75 182.567 75.216H56L207.216 272.95 63.9 436.783h61.366L235.9 310.383l96.667 126.4H456L298.367 228.367l134-153.151H371.033zM127.633 110h36.468l219.38 290.065H349.5z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Iptables on linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a3129%2fposts%2fnetwork%2fiptables%2f&amp;title=Iptables&amp;summary=Iptables&amp;source=http%3a%2f%2flocalhost%3a3129%2fposts%2fnetwork%2fiptables%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM160.461 423.278V197.561h-75.04v225.717h75.04zm270.539.0V293.839c0-69.333-37.018-101.586-86.381-101.586-39.804.0-57.634 21.891-67.617 37.266v-31.958h-75.021c.995 21.181.0 225.717.0 225.717h75.02V297.222c0-6.748.486-13.492 2.474-18.315 5.414-13.475 17.767-27.434 38.494-27.434 27.135.0 38.007 20.707 38.007 51.037v120.768H431zM123.448 88.722C97.774 88.722 81 105.601 81 127.724c0 21.658 16.264 39.002 41.455 39.002h.484c26.165.0 42.452-17.344 42.452-39.002-.485-22.092-16.241-38.954-41.943-39.002z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Iptables on reddit" href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a3129%2fposts%2fnetwork%2fiptables%2f&title=Iptables"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM446 265.638c0-22.964-18.616-41.58-41.58-41.58-11.211.0-21.361 4.457-28.841 11.666-28.424-20.508-67.586-33.757-111.204-35.278l18.941-89.121 61.884 13.157c.756 15.734 13.642 28.29 29.56 28.29 16.407.0 29.706-13.299 29.706-29.701.0-16.403-13.299-29.702-29.706-29.702-11.666.0-21.657 6.792-26.515 16.578l-69.105-14.69c-1.922-.418-3.939-.042-5.585 1.036-1.658 1.073-2.811 2.761-3.224 4.686l-21.152 99.438c-44.258 1.228-84.046 14.494-112.837 35.232-7.468-7.164-17.589-11.591-28.757-11.591-22.965.0-41.585 18.616-41.585 41.58.0 16.896 10.095 31.41 24.568 37.918-.639 4.135-.99 8.328-.99 12.576.0 63.977 74.469 115.836 166.33 115.836s166.334-51.859 166.334-115.836c0-4.218-.347-8.387-.977-12.493 14.564-6.47 24.735-21.034 24.735-38.001zM326.526 373.831c-20.27 20.241-59.115 21.816-70.534 21.816-11.428.0-50.277-1.575-70.522-21.82-3.007-3.008-3.007-7.882.0-10.889 3.003-2.999 7.882-3.003 10.885.0 12.777 12.781 40.11 17.317 59.637 17.317 19.522.0 46.86-4.536 59.657-17.321 3.016-2.999 7.886-2.995 10.885.008 3.008 3.011 3.003 7.882-.008 10.889zm-5.23-48.781c-16.373.0-29.701-13.324-29.701-29.698.0-16.381 13.328-29.714 29.701-29.714 16.378.0 29.706 13.333 29.706 29.714.0 16.374-13.328 29.698-29.706 29.698zM160.91 295.348c0-16.381 13.328-29.71 29.714-29.71 16.369.0 29.689 13.329 29.689 29.71.0 16.373-13.32 29.693-29.689 29.693-16.386.0-29.714-13.32-29.714-29.693z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Iptables on facebook" href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a3129%2fposts%2fnetwork%2fiptables%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H342.978V319.085h66.6l12.672-82.621h-79.272v-53.617c0-22.603 11.073-44.636 46.58-44.636H425.6v-70.34s-32.71-5.582-63.982-5.582c-65.288.0-107.96 39.569-107.96 111.204v62.971h-72.573v82.621h72.573V512h-191.104c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Iptables on whatsapp" href="https://api.whatsapp.com/send?text=Iptables%20-%20http%3a%2f%2flocalhost%3a3129%2fposts%2fnetwork%2fiptables%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zm-58.673 127.703c-33.842-33.881-78.847-52.548-126.798-52.568-98.799.0-179.21 80.405-179.249 179.234-.013 31.593 8.241 62.428 23.927 89.612l-25.429 92.884 95.021-24.925c26.181 14.28 55.659 21.807 85.658 21.816h.074c98.789.0 179.206-80.413 179.247-179.243.018-47.895-18.61-92.93-52.451-126.81zM263.976 403.485h-.06c-26.734-.01-52.954-7.193-75.828-20.767l-5.441-3.229-56.386 14.792 15.05-54.977-3.542-5.637c-14.913-23.72-22.791-51.136-22.779-79.287.033-82.142 66.867-148.971 149.046-148.971 39.793.014 77.199 15.531 105.329 43.692 28.128 28.16 43.609 65.592 43.594 105.4-.034 82.149-66.866 148.983-148.983 148.984zm81.721-111.581c-4.479-2.242-26.499-13.075-30.604-14.571-4.105-1.495-7.091-2.241-10.077 2.241-2.986 4.483-11.569 14.572-14.182 17.562-2.612 2.988-5.225 3.364-9.703 1.12-4.479-2.241-18.91-6.97-36.017-22.23C231.8 264.15 222.81 249.484 220.198 245s-.279-6.908 1.963-9.14c2.016-2.007 4.48-5.232 6.719-7.847 2.24-2.615 2.986-4.484 4.479-7.472 1.493-2.99.747-5.604-.374-7.846-1.119-2.241-10.077-24.288-13.809-33.256-3.635-8.733-7.327-7.55-10.077-7.688-2.609-.13-5.598-.158-8.583-.158-2.986.0-7.839 1.121-11.944 5.604-4.105 4.484-15.675 15.32-15.675 37.364.0 22.046 16.048 43.342 18.287 46.332 2.24 2.99 31.582 48.227 76.511 67.627 10.685 4.615 19.028 7.371 25.533 9.434 10.728 3.41 20.492 2.929 28.209 1.775 8.605-1.285 26.499-10.833 30.231-21.295 3.732-10.464 3.732-19.431 2.612-21.298-1.119-1.869-4.105-2.99-8.583-5.232z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Iptables on telegram" href="https://telegram.me/share/url?text=Iptables&amp;url=http%3a%2f%2flocalhost%3a3129%2fposts%2fnetwork%2fiptables%2f"><svg viewBox="2 2 28 28" height="30" width="30" fill="currentcolor"><path d="M26.49 29.86H5.5a3.37 3.37.0 01-2.47-1 3.35 3.35.0 01-1-2.47V5.48A3.36 3.36.0 013 3 3.37 3.37.0 015.5 2h21A3.38 3.38.0 0129 3a3.36 3.36.0 011 2.46V26.37a3.35 3.35.0 01-1 2.47 3.38 3.38.0 01-2.51 1.02zm-5.38-6.71a.79.79.0 00.85-.66L24.73 9.24a.55.55.0 00-.18-.46.62.62.0 00-.41-.17q-.08.0-16.53 6.11a.59.59.0 00-.41.59.57.57.0 00.43.52l4 1.24 1.61 4.83a.62.62.0 00.63.43.56.56.0 00.4-.17L16.54 20l4.09 3A.9.9.0 0021.11 23.15zM13.8 20.71l-1.21-4q8.72-5.55 8.78-5.55c.15.0.23.0.23.16a.18.18.0 010 .06s-2.51 2.3-7.52 6.8z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Iptables on ycombinator" href="https://news.ycombinator.com/submitlink?t=Iptables&u=http%3a%2f%2flocalhost%3a3129%2fposts%2fnetwork%2fiptables%2f"><svg width="30" height="30" viewBox="0 0 512 512" fill="currentcolor" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"><path d="M449.446.0C483.971.0 512 28.03 512 62.554V449.446C512 483.97 483.97 512 449.446 512H62.554C28.03 512 0 483.97.0 449.446V62.554C0 28.03 28.029.0 62.554.0H449.446zM183.8767 87.9921h-62.034L230.6673 292.4508V424.0079h50.6655V292.4508L390.1575 87.9921H328.1233L256 238.2489z"/></svg></a></li></ul></footer></article></main><footer class=footer><span>&copy; 2024 <a href=http://localhost:3129/>CodoC</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

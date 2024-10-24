@@ -2,35 +2,65 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/tags/clickhouse/</loc>
+    <loc>http://localhost:3129/</loc>
+    <lastmod>2024-10-24T10:26:41+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:3129/tags/firewall/</loc>
+    <lastmod>2024-10-24T10:26:41+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:3129/posts/network/iptables/</loc>
+    <lastmod>2024-10-24T10:26:41+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:3129/tags/network/</loc>
+    <lastmod>2024-10-24T10:26:41+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:3129/posts/</loc>
+    <lastmod>2024-10-24T10:26:41+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:3129/tags/</loc>
+    <lastmod>2024-10-24T10:26:41+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:3129/tags/tools/</loc>
+    <lastmod>2024-10-24T10:26:41+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:3129/tags/ansible/</loc>
+    <lastmod>2024-10-22T10:26:41+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:3129/posts/ansible/install_compose_project/</loc>
+    <lastmod>2024-10-22T10:26:41+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:3129/tags/docker/</loc>
+    <lastmod>2024-10-22T10:26:41+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:3129/posts/ansible/install_docker_tasks/</loc>
+    <lastmod>2024-10-22T09:26:41+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:3129/tags/vim/</loc>
+    <lastmod>2020-09-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:3129/posts/auxiliary/vim/</loc>
+    <lastmod>2020-09-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:3129/tags/clickhouse/</loc>
     <lastmod>2020-09-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/clickhouse_useful_queries/</loc>
+    <loc>http://localhost:3129/posts/clickhouse_useful_queries/</loc>
     <lastmod>2020-09-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>http://localhost:3129/tags/database/</loc>
     <lastmod>2020-09-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/database/</loc>
+    <loc>http://localhost:3129/tags/git/</loc>
     <lastmod>2020-09-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/git/</loc>
+    <loc>http://localhost:3129/posts/gitlab/</loc>
     <lastmod>2020-09-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/gitlab/</loc>
-    <lastmod>2020-09-16T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2020-09-16T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2020-09-16T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/ceph/</loc>
+    <loc>http://localhost:3129/posts/ceph/</loc>
     <lastmod>2020-09-15T11:30:03+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>http://localhost:3129/categories/</loc>
   </url><url>
-    <loc>http://localhost:1313/search/</loc>
+    <loc>http://localhost:3129/search/</loc>
   </url>
 </urlset>

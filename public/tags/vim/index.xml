@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Vim on CodoC</title>
+    <link>http://localhost:3129/tags/vim/</link>
+    <description>Recent content in Vim on CodoC</description>
+    <image>
+      <title>CodoC</title>
+      <url>http://localhost:3129/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>http://localhost:3129/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.135.0</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 24 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:3129/tags/vim/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Vim configurations</title>
+      <link>http://localhost:3129/posts/auxiliary/vim/</link>
+      <pubDate>Thu, 24 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>http://localhost:3129/posts/auxiliary/vim/</guid>
+      <description>&lt;h3 id=&#34;vimrc&#34;&gt;~/.vimrc&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-vim&#34; data-lang=&#34;vim&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;runtime&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;!&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;ftplugin&lt;/span&gt;/&lt;span class=&#34;nx&#34;&gt;man&lt;/span&gt;.&lt;span class=&#34;nx&#34;&gt;vim&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;number&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;nowrap&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;filetype&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;on&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;filetype&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;plugin&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;on&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;filetype&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;indent&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;on&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;syntax&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;on&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;cursorline&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;#&lt;span class=&#34;k&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;cursorcolumn&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;shiftwidth&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;4&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;tabstop&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;4&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;ignorecase&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;smartcase&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;wildmenu&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+  </channel>
+</rss>

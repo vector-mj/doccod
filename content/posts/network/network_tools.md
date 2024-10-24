@@ -1,7 +1,8 @@
 ---
-title: Ceph OSD Management
+title: Network tools
 date: 2024-10-22T10:26:41+00:00
 tags: ["network","tools"]
+draft: true
 cover:
   image: "/images/network.jpg"
   alt: "<alt text>"
