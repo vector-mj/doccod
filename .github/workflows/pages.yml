@@ -30,21 +30,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
-      # actions/download-artifact@v3 does not allow sharing across workflows
+        uses: actions/checkout@v4
       - name: Download artifact
-        id: download-artifact
         uses: dawidd6/action-download-artifact@v6
+        id: download-artifact
         with:
           name: book
           path: book/
           workflow: build.yml
       - name: Setup Pages
-        uses: actions/configure-pages@v2
+        uses: actions/configure-pages@v4
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
           path: book
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
