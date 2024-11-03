@@ -3,7 +3,7 @@
 # Iptables (How it works and how we can configure it)
 ---
 
-![packet flow](/images/packet_flow.png)
+![packet flow](https://www.lumiun.com/blog/wp-content/uploads/Firewall-sua-rede-precisa-dessa-protecao-blog.jpg)
 
 
 #### How to discover all used ports
