@@ -6,5 +6,5 @@
     - [Qbittorrent](./docker/compose/qbittorrent.md)
 - [Databases]()
   - [Clickhouse](./database/clickhouse.md)
-- [Auxiliary]
+- [Auxiliary]()
   - [Vim](./auxiliary/vim.md)
