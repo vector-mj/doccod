@@ -16,7 +16,7 @@ jobs:
     - uses: taiki-e/cache-cargo-install-action@v2
       with:
         tool: mdbook
-        
+
     - uses: taiki-e/cache-cargo-install-action@v2
       with:
         tool: mdbook-pagecrypt
@@ -27,4 +27,4 @@ jobs:
     - uses: actions/upload-artifact@v4
       with:
         name: book
-        path: book/
+        path: book/pagecrypt/
