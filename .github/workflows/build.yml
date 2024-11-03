@@ -13,10 +13,13 @@ jobs:
       with:
         submodules: true
 
-    - uses: actions-rs/toolchain@v1
+    - uses: taiki-e/cache-cargo-install-action@v2
       with:
-        toolchain: stable
-    - run: cargo install mdbook mdbook-pagecrypt
+        tool: mdbook
+        
+    - uses: taiki-e/cache-cargo-install-action@v2
+      with:
+        tool: mdbook-pagecrypt
 
     - name: Build
       run: mdbook build
