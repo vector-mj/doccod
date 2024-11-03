@@ -1,0 +1,18 @@
+[book]
+authors = ["MohammadJavad Hoseini"]
+language = "en"
+multilingual = false
+src = "src"
+title = "DocoD"
+text-direction = "ltr"
+
+[output.html]
+default-theme="navy"
+
+[output.html.playground]
+editable=false
+copyable=true
+
+[output.pagecrypt]
+password="asdf"
+rounds= 600_000
