@@ -24,6 +24,8 @@ jobs:
     - name: Build
       run: mdbook build
 
+    - name: Copy search index
+      run: cp book/html/searchindex.json book/pagecrypt/
     - uses: actions/upload-artifact@v4
       with:
         name: book
