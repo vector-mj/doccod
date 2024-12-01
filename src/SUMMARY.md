@@ -7,6 +7,8 @@
   - [Clickhouse](./database/clickhouse.md)
 - [Auxiliary]()
   - [Vim](./auxiliary/vim.md)
+  - [SSH](./auxiliary/ssh.md)
+  - [Git](./auxiliary/git.md)
 - [Ansible]()
   - [Install Docker](./ansible/install_docker.md)
   - [Install Compose project](./ansible/install_compose_project.md)
